@@ -1,0 +1,60 @@
+.checkboxGroup {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.checkboxTitle {
+  font-weight: bold;
+}
+
+/* This is the label that wraps around the input & text */
+.customCheckbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center; /* Vertically centers the checkbox and label - they are flex items/children */
+  padding-left: 30px; /* Adds padding to the left of the element, making space for the custom checkbox */
+  line-height: 23px; /* Text height to match checkbox height */
+  cursor: pointer;
+}
+
+/* Hides the actual input */
+.customCheckbox input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+/* This is the checkbox */
+.customCheckbox .checkbox {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 24px;
+  height: 23px;
+  border: 1.5px var(--color-light-grey) solid;
+  border-radius: var(--b-radius-checkbox);
+  background-color: var(--color-light);
+  transform: translateY(
+    -50%
+  ); /* Offsets the element vertically by 50% of its own height, effectively centering it vertically */
+}
+
+/* This is the tick in the checkbox */
+.customCheckbox .checkbox:after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 8px;
+  display: none;
+  width: 7px;
+  height: 12px;
+  border: var(--color-purple) solid;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.customCheckbox input:checked + .checkbox:after {
+  /* Tick displays when input checked */
+  display: block;
+}

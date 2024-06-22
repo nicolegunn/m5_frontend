@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Filters from "./components/Filters/Filters.jsx";
 import styles from "./FindAStation.module.css";
+
 
 export default function FindAStation() {
   const [stations, setStations] = useState([]);
@@ -22,8 +24,9 @@ export default function FindAStation() {
   }, []);
 
   return (
-    <div className={styles.MainContainer}>
-      <h1>Find A Station</h1>
+    <div className={styles.mainContainer}>
+          <h3 className={ styles.path}>Home &gt; <span>Find a station</span></h3>
+      <Filters />
     </div>
   );
 }

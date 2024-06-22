@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
+import NavBar from "./components/NavBar/NavBar.jsx";
 import Home from "./pages/Home/Home.jsx";
 import FindAStation from "./pages/FindAStation/FindAStation.jsx";
-import NavBar from './components/NavBar/NavBar.jsx';
 
 function App() {
   return (
