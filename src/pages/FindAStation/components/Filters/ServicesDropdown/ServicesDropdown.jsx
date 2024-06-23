@@ -1,11 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./ServicesDropdown.module.css";
 import { services, keyServices } from "./services.js";
 
-export default function ServicesDropdown() {
+export default function ServicesDropdown({ onServiceSelection }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isNestedDropdownOpen, setIsNestedDropdownOpen] = useState({});
   const [selectedServices, setSelectedServices] = useState([]);
+
+  useEffect(() => {
+    const serviceDatabaseNames = selectedServices.map(
+      (service) => service.serviceDatabaseName
+    );
+    onServiceSelection(serviceDatabaseNames);
+  }, [selectedServices]);
 
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
@@ -34,10 +41,11 @@ export default function ServicesDropdown() {
     const selectedService = services.find(
       (s) => s.serviceFullName === serviceFullName
     );
-    // Create an object with the short name and full name of the selected service
+    // Create an object with the short name, full name and database name of the selected service
     const serviceObj = {
       serviceShortName: selectedService.serviceShortName,
       serviceFullName: selectedService.serviceFullName,
+      serviceDatabaseName: selectedService.serviceDatabaseName,
     };
     // Update the selectedServices state
     setSelectedServices(
@@ -151,9 +159,11 @@ export default function ServicesDropdown() {
                   <label className={styles.customCheckbox}>
                     <input
                       type="checkbox"
-                      checked={selectedServices.find(
-                        (s) => s.serviceFullName === service.serviceFullName
-                      )}
+                      checked={
+                        !!selectedServices.find(
+                          (s) => s.serviceFullName === service.serviceFullName
+                        )
+                      }
                       onChange={() =>
                         toggleSelectService(service.serviceFullName)
                       }
