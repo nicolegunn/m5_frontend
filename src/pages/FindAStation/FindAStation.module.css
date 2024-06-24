@@ -1,5 +1,5 @@
 .mainContainer {
- margin-inline: 11vw;
+ margin-inline: 11vw; /* Padding in NavBar set to match this */ 
  font-size: 16px;
 }
 
