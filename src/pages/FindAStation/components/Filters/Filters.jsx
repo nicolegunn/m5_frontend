@@ -30,10 +30,7 @@ export default function Filters({ fetchStations }) {
           onChange={setFuelTypes}
         />
       </div>
-      <ServicesDropdown onServiceSelection={setSelectedServices} />
-      <button onClick={handleApplyFilters} className={styles.applyFilterButton}>
-        Apply Filter
-      </button>
+      <ServicesDropdown onServiceSelection={setSelectedServices} onApplyFiltersButtonClick={ handleApplyFilters} />
     </div>
   );
 }

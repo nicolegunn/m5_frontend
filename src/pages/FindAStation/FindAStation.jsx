@@ -1,14 +1,11 @@
-
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Filters from "./components/Filters/Filters.jsx";
+import Card from "./components/Card/Card.jsx";
 import styles from "./FindAStation.module.css";
-import Card from "./components/Card/Card.jsx"
-
 
 export default function FindAStation() {
   const [stations, setStations] = useState([]);
-
 
   const fetchStations = async (filters) => {
     try {
@@ -31,25 +28,14 @@ export default function FindAStation() {
   }, []);
 
   return (
-
     <div className={styles.mainContainer}>
       <h3 className={styles.path}>
         Home &gt; <span>Find a station</span>
       </h3>
       <Filters fetchStations={handleApplyFilters} />
-      <ul>
-        {stations.length}
-        {stations.map((station) => (
-          <li key={station._id}>
-            {station.name} - {station.address}
-          </li>
-        ))}
-      </ul>
+      {stations.map((station) => (
+        <Card key={station.name} station={station} />
+      ))}
     </div>
   );
-}
-      {stations.map((station) => (
-        <Card key={station.name} station={station}/>
-      ))}
-  )
 }
