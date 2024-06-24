@@ -1,0 +1,179 @@
+body, html {
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+  .card {
+    min-height: 200px;
+    width: 100vw;
+    display: flex;
+  flex-direction: column;
+  background-color: var(--color-light);
+  font-family: var(--ff-ss);
+  padding-bottom: 30px;
+  border-bottom: 1px solid gray;
+  }
+}
+
+.card {
+  min-height: 200px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-light);
+  font-family: var(--ff-ss);
+  padding-bottom: 30px;
+  border-bottom: 1px solid gray;
+}
+
+.stationInfo {
+  font-size: 14px;
+  font-weight: 600;
+  padding-left: 30px;
+  padding-top: 25px;
+}
+
+.stationName {
+  color: var(--color-orange);
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.address {
+  font-size: 14px;
+  list-style: none;
+}
+
+.openingHoursButtonCollapsed {
+  cursor: pointer;
+  font-size: 12px;
+  transition: transform 0.2s;
+}
+
+.openingHoursButtonExpanded {
+  cursor: pointer;
+  transform: rotate(180deg);
+  transition: transform 0.2s;
+}
+
+.openingHoursContainer {
+  margin-top: 10px;
+}
+
+.openingHoursDetailContainer {
+  display: grid;
+  grid-template-columns: 150px 150px;
+}
+
+.openingHoursDay,
+.openingHoursTimes {
+  list-style: none;
+}
+
+.openingHoursDay > li,
+.openingHoursTimes > li {
+  font-weight: 400;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.servicesOuterContainer {
+  margin-top: 20px;
+}
+
+.servicesHeader {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.servicesContainer {
+  /* width: 90%; */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.service {
+  flex-basis: 33.33333%;
+  font-size: 14px;
+  padding-left: 10px;
+  padding-right: 15px;
+}
+
+.expandButton {
+  position: relative;
+  top: 12px;
+  font-size: 12px;
+  color: blue;
+  cursor: pointer;
+}
+
+.serviceIcon {
+  position: relative;
+  top: 6px;
+  height: 24px;
+  /* margin-right: 5px; */
+}
+
+.serviceIconContainer {
+  overflow: hidden;
+}
+
+.infoContainer {
+  display: grid;
+  grid-template-columns: 310px auto;
+}
+
+.fuelPriceContainer {
+  position: relative;
+  background-color: white;
+  border-radius: var(--b-radius-button);
+  height: 39px;
+  width: 136px;
+  border: 2px solid var(--color-orange);
+}
+
+.fuelPriceContent {
+  display: flex;
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  color: green;
+  font-weight: 750;
+}
+.fuelPriceIcon {
+  position: absolute;
+  height: 16px;
+  left: -25px;
+  top: 53%;
+  transform: translateY(-50%);
+}
+.directionsContainer {
+  display: flex;
+  position: relative;
+  background-color: var(--color-purple);
+  border-radius: var(--b-radius-button);
+  height: 39px;
+  width: 136px;
+  margin-top: 9px;
+}
+
+.directionsIcon {
+  height: 25px;
+  background-color: transparent;
+  position: absolute;
+  left: -30px;
+  top: 53%;
+  transform: translateY(-50%);
+}
+
+.directionsContent {
+  color: var(--color-light);
+  position: absolute;
+  margin: 0;
+  top: 50%;
+  left: 58%;
+  transform: translate(-50%, -50%);
+}
