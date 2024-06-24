@@ -1,7 +1,4 @@
-.mainContainer {
-}
 .checkboxGroupsContainer {
   display: flex;
-  gap: 2rem;
-  padding-block: 1rem;
+  gap: calc(var(--checkbox-label-gap) * 4);
 }

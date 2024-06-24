@@ -1,8 +1,7 @@
 /* Wraps Entire Component */
 .servicesDropdown {
-  position: relative; /* ??*/
   display: flex;
-  padding-block: 1rem;
+  margin-top: 1rem;
 }
 
 /* The "Filter by services" title */
@@ -16,7 +15,9 @@
 .flexColumnWrapper {
   display: flex;
   flex-direction: column;
-  width: 600px; /* ?? sort this out later */
+  width: 40vw;
+  min-width: 300px;
+  font-size: 15px;
 }
 
 /* Wraps input box */
@@ -28,11 +29,12 @@
 /* Input box  */
 .dropdownInput {
   display: flex;
-  justify-content: space-between; /*??*/
-  align-items: center; /*??*/
-  padding: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
   border: 1.5px var(--color-light-grey) solid;
   border-radius: var(--b-radius-container);
+  line-height: 1.5rem;
   transition: border-color 0.3s ease;
 }
 
@@ -50,12 +52,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  max-width: 90%; /*??*/
 }
 
 /* Ovals inside the input box */
 .selectedService {
-  padding: 0.25rem 0.75rem;
+  padding: 0.5rem 1rem;
   border-radius: var(--b-radius-button);
   background-color: var(--color-purple);
   color: var(--color-light);
@@ -104,7 +105,7 @@
   border: 1px var(--color-orange) solid;
   border-radius: var(--b-radius-container);
   overflow: hidden;
-  font-size: 15px;
+
   font-weight: bold;
   list-style: none;
 }
@@ -131,7 +132,7 @@ span {
 }
 
 .serviceItem.heading.nestedOpen {
-  background-color: var(--color-purple);
+  background-color: var(--color-purple-medium);
   color: var(--color-light);
 }
 
@@ -204,17 +205,18 @@ span {
 .applyFilterButton {
   align-self: flex-start;
   padding: 0.5rem 1rem;
+  margin-left: 1rem;
   border-radius: var(--b-radius-button);
   background-color: var(--color-purple);
   color: var(--color-light);
-  margin-left: 1rem;
+  font-size: 18px;
 }
 
 .ovalButtons {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
-  margin-top: 1rem;
+  margin-block: 0.5rem;
 }
 
 .ovalButton {
@@ -222,6 +224,7 @@ span {
   border: 2px solid var(--color-orange);
   border-radius: var(--b-radius-button);
   color: var(--color-purple);
+  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "./ServicesDropdown.module.css";
 import { services, keyServices } from "./services.js";
 
-export default function ServicesDropdown({ onServiceSelection }) {
+export default function ServicesDropdown({ onServiceSelection, onApplyFiltersButtonClick }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isNestedDropdownOpen, setIsNestedDropdownOpen] = useState({});
   const [selectedServices, setSelectedServices] = useState([]);
@@ -209,7 +209,12 @@ export default function ServicesDropdown({ onServiceSelection }) {
           ))}
         </div>
       </div>
-      <button className={styles.applyFilterButton}>Apply Filter</button>
+      <button
+        className={styles.applyFilterButton}
+        onClick={onApplyFiltersButtonClick}
+      >
+        Apply Filter
+      </button>
     </div>
   );
 }
