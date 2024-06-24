@@ -1,145 +1,143 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 10px;
-    background-color: var(--color-light);
-    font-family: var(--ff-ss);
-    border-bottom: 2px solid var(--grey, #d6d0d0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  padding-inline: 11vw; /*To match margin in FindAStation Component */
+  background-color: var(--color-light);
+  font-family: var(--ff-ss);
+  border-bottom: 2px solid var(--grey, #d6d0d0);
 }
 
 button {
-    background: none;
-    border: none;
-    padding: 10px; 
-    cursor: pointer;
-    display: flex; 
-    align-items: center;
+  background: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .navMenu {
-    display: flex;
-    gap: 20px;
-    align-items: center;
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }
 
 .logo img {
-    height: 30px;
-    display: block;
+  height: 30px;
+  display: block;
 }
 
 .menuItem {
-    padding: 10px 15px;
-    cursor: pointer;
-    text-decoration: none;
-    color: var(--color-dark);
-    font-weight: bold;
-    background: none;
-    border: none;
-    position: relative;
+  padding: 10px 15px;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--color-dark);
+  font-weight: bold;
+  background: none;
+  border: none;
+  position: relative;
 }
 
 .menuItem:hover,
 .menuItem:focus {
-    background-color: var(--color-light-grey);
+  background-color: var(--color-light-grey);
 }
 
 .dropdownContent {
-    display: none;
-    position: absolute;
-    background-color: var(--color-light);
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    min-width: 160px;
+  display: none;
+  position: absolute;
+  background-color: var(--color-light);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  min-width: 160px;
 }
 
 .dropdownContent a {
-    color: var(--color-dark);
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+  color: var(--color-dark);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
 
 .dropdownContent a:hover {
-    background-color: var(--color-light-grey);
+  background-color: var(--color-light-grey);
 }
 
 .menuItem:hover .dropdownContent {
-    display: block;
+  display: block;
 }
 
 .searchBar {
-    display: flex;
-    flex-direction: right;
-    gap: 10px;
+  display: flex;
+  flex-direction: right;
+  gap: 10px;
 }
 
 .searchInput {
-    border: none;
-    padding: 5px;
-    outline: none;
-    width: 80px;
-    margin-right: 10px;
+  border: none;
+  padding: 5px;
+  outline: none;
+  width: 80px;
+  margin-right: 10px;
 }
 
 .searchInput::placeholder {
-    font-weight: bold;
-    color: var(--color-dark);
+  font-weight: bold;
+  color: var(--color-dark);
 }
 
 .searchButton {
-    background: var(--color-light);
-    color: var(--color-dark);
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
+  background: var(--color-light);
+  color: var(--color-dark);
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
 .stationButton {
-    background: var(--color-orange);
-    color: var(--color-light);
-    border: 2px solid var(--color-orange);
-    border-radius: 20px;
-    padding: 5px 15px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 30px;
-    width: 150px;
+  background: var(--color-orange);
+  color: var(--color-light);
+  border: 2px solid var(--color-orange);
+  border-radius: 20px;
+  padding: 5px 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 30px;
+  width: 150px;
 }
 
 .hamburgerMenu {
-    display: none;
+  display: none;
 }
 
-
 @media (max-width: 600px) {
+  .navMenu {
+    display: none;
+  }
 
-    .navMenu {
-        display: none;
-    }
+  .navMenu.active {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 
-    .navMenu.active {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
+  .hamburgerMenu {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+  }
 
-    .hamburgerMenu {
-        display: block;
-        position: absolute;
-        top: 0px;
-        right: 10px;
-    }
+  .searchBar {
+    display: none;
+  }
 
-    .searchBar {
-        display: none;
-    }
-
-    .hamburgerIcon svg{
-        color: var(--color-orange);
-    }
- 
+  .hamburgerIcon svg {
+    color: var(--color-orange);
+  }
 }
