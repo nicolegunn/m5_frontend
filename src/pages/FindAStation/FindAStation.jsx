@@ -4,7 +4,9 @@ import styles from "./FindAStation.module.css";
 import Card from "./components/Card/Card.jsx"
 //import Filters from "./components/Filters.jsx"
 
-const stations = JSON.parse(`[{
+
+//The following is so that I can test the Card component without the backend
+const testStations = (JSON.parse(`[{ 
   "name": "Z Aerodrome Road truck stop",
   "address": "Aerodrome Road",
   "hours": "Open 24 hours",
@@ -147,7 +149,7 @@ const stations = JSON.parse(`[{
     "lat": -43.5457832,
     "lon": 172.6084469
   }
-}]`);
+}]`));
 
 export default function FindAStation() {
   const [stations, setStations] = useState([]);
