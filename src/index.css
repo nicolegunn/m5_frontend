@@ -7,13 +7,13 @@
   --checkbox-size: clamp(16px, 1.67vw, 24px);
   --checkbox-label-gap: calc(var(--checkbox-size) / 3);
   --color-dark: #000;
+  --color-medium: #353535;
   --color-light: #fff;
+  --color-grey: #808080;
   --color-light-grey: #dedddd;
-  --color-purple: #1c1d66;
-  --color-purple-medium: #1e196a; 
+  --color-purple: #1c1d66; 
   --color-orange: #ed560e;
   --color-yellow: #ffcb08;
-  --color-grey: #808080;
   --ff-ss: "Inter", sans-serif;
 }
 
