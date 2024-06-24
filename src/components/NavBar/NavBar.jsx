@@ -2,12 +2,19 @@ import React, { useState } from 'react';
 import styles from './NavBar.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faChevronDown, faBars } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
+
 
 function NavBar() {
     const [isMenuOpen, setMenuOpen] = useState(false);
+    const navigate = useNavigate();
 
     const toggleMenu = () => {
         setMenuOpen(!isMenuOpen);
+    };
+
+    const handleFindStationClick = () => {
+        navigate('/find-a-station'); 
     };
 
     return (
@@ -52,7 +59,7 @@ function NavBar() {
             </div>
 
             <div className={styles.searchBar}>
-                <button className={styles.stationButton}>Find a station</button>
+                <button className={styles.stationButton} onClick={handleFindStationClick}>Find a station</button>
                 <input className={styles.searchInput} type="text" placeholder="Search" />
                 <button className={styles.searchButton}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
