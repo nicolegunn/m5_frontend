@@ -38,7 +38,8 @@ function Card({ station }) {
             <div className={styles.directionsContainer}><p className={styles.directionsContent}><img className={styles.directionsIcon} src="/images/cardImages/directions.png" alt="" />Directions</p></div>
           </div> 
         </div>
-        <Services services={station.services} />
+
+        {station.services.length > 0 && <Services services={station.services} />}
       </div>
     </div>
   );
