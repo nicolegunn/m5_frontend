@@ -33,27 +33,13 @@ function Services({ services }) {
     <div className={styles.servicesOuterContainer}>
           <p className={styles.servicesHeader}>Services</p>
           <div className={styles.servicesContainer}>
-            {isServicesExpanded
-              ? services.map((service, index) => (
-                  <div key={index}>
-                    <img
-                      className={styles.serviceIcon}
-                      src={getImageSrc(service)}
-                      alt=""
-                    />
-                    <span key={service} className={styles.service}>
-                      <span className={styles.serviceIconContainer}></span>
-                      {service}
-                    </span>
-                  </div>
-                ))
-              : services.slice(0, 4).map((service, index) => (
-                  <div key={index}>
-                    <img
-                      className={styles.serviceIcon}
-                      src={getImageSrc(service)}
-                      alt=""
-                    />
+            {(isServicesExpanded? services : services.slice(0, 4))?.map((service, index) => (
+              <div key={index}>
+                <img
+                  className={styles.serviceIcon}
+                  src={getImageSrc(service)}
+                  alt=""
+                />
                     <span key={service} className={styles.service}>
                       {service}
                     </span>

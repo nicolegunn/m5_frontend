@@ -172,7 +172,7 @@ export default function FindAStation() {
 
   return (
     <div className={styles.MainContainer}>
-      {stations.map((station) => (
+      {testStations.map((station) => (
         <Card key={station.name} station={station}/>
       ))}
     </div>
