@@ -1,7 +1,6 @@
 /* Wraps Entire Component */
 .servicesDropdown {
   display: flex;
-  margin-top: 1rem;
 }
 
 /* The "Filter by services" title */
@@ -16,13 +15,11 @@
   display: flex;
   flex-direction: column;
   width: 40vw;
-  min-width: 300px;
-  font-size: 15px;
+  min-width: 400px;
 }
 
 /* Wraps input box */
 .inputContainer {
-  position: relative; /* needed for x which uses absolute positioning */
   cursor: pointer;
 }
 
@@ -32,7 +29,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 1rem;
-  border: 1.5px var(--color-light-grey) solid;
+  border: 1px var(--color-light-grey) solid;
   border-radius: var(--b-radius-container);
   line-height: 1.5rem;
   transition: border-color 0.3s ease;
@@ -40,7 +37,7 @@
 
 .dropdownInput:hover,
 .dropdownInput.dropdownOpen {
-  border-color: var(--color-orange);
+  border: 2px var(--color-orange) solid;
 }
 
 .placeholder {
@@ -56,10 +53,11 @@
 
 /* Ovals inside the input box */
 .selectedService {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem;
   border-radius: var(--b-radius-button);
   background-color: var(--color-purple);
   color: var(--color-light);
+  font-weight: bold;
 }
 
 /* The x that appears inside the oval selectedService*/
@@ -68,44 +66,44 @@
   color: var(--color-light);
 }
 
-/* The x that appears in the input box when something is selected  which clears all selected services */
-.removeAllServicesX {
-  position: absolute;
-  top: 50%;
-  right: 1rem;
-  color: var(--color-purple);
-  font-size: 1.5rem;
-  transform: translateY(-50%);
+.xAndArrowContainer {
+  display: flex;
+  align-items: center;
 }
 
-/* The x that closes the dropdown menu */
-.closeDropdownX {
-  position: absolute;
-  top: 50%;
-  right: 1rem;
+/* The x that appears in the input box when something is selected  which clears all selected services */
+.removeAllServicesX {
+  margin-inline: 0.5rem;
   color: var(--color-purple);
-  font-size: 1.5rem;
-  transform: translateY(-50%);
+  font-size: calc((--fs-desktop) * 2);
+}
+
+.divider {
+  height: 2rem;
+  border-left: 1px var(--color-light-grey) solid;
+  color: var(--color-light-grey);
 }
 
 /* Arrow that appears inside the input box after the selectedServices container 
     and inside the dropdownMenu
 */
 .dropdownArrow {
-  width: 0;
-  height: 0;
+  width: 1rem;
+  height: 1rem;
   margin-left: 0.5rem;
-  /* ?? sort arrow style out later */
-  border-top: 6px solid var(--color-dark);
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
+  border: var(--color-dark) solid;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.arrowUp {
+  border-width: 2px 0px 0px 2px;
 }
 
 .dropdownMenu {
   border: 1px var(--color-orange) solid;
   border-radius: var(--b-radius-container);
   overflow: hidden;
-
   font-weight: bold;
   list-style: none;
 }
@@ -132,7 +130,7 @@ span {
 }
 
 .serviceItem.heading.nestedOpen {
-  background-color: var(--color-purple-medium);
+  background-color: var(--color-purple);
   color: var(--color-light);
 }
 
@@ -209,7 +207,6 @@ span {
   border-radius: var(--b-radius-button);
   background-color: var(--color-purple);
   color: var(--color-light);
-  font-size: 18px;
 }
 
 .ovalButtons {
@@ -224,7 +221,6 @@ span {
   border: 2px solid var(--color-orange);
   border-radius: var(--b-radius-button);
   color: var(--color-purple);
-  font-size: 14px;
   font-weight: bold;
   cursor: pointer;
 }
@@ -236,4 +232,30 @@ span {
 
 .hidden {
   display: none;
+}
+
+@media (width < 600px) {
+  .servicesDropdown {
+    flex-direction: column;
+  }
+
+  .title {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .flexColumnWrapper {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .selectedServices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  .divider {
+
+  }
 }

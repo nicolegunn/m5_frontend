@@ -1,4 +1,40 @@
+.toggleAllFilters {
+  display: none;
+  justify-content: space-between;
+  padding-block: calc(var(--padding-body-mobile) * 0.9);
+  padding-inline: var(--padding-body-mobile);
+  margin-top: 1.25rem;
+  margin-inline: calc(var(--padding-body-mobile) * -1);
+  background-color: var(--color-purple);
+  color: var(--color-light);
+  font-weight: bold;
+}
+
+.dropdownArrow {
+  width: 12px;
+  height: 12px;
+  border: var(--color-light) solid;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.arrowUp {
+  border-width: 2px 0px 0px 2px;
+}
+
 .checkboxGroupsContainer {
   display: flex;
   gap: calc(var(--checkbox-label-gap) * 4);
+  margin-block: 2.5rem;
+}
+
+@media (width < 600px) {
+  .toggleAllFilters {
+    display: flex; /* unhides All filters bar */
+  }
+
+  .checkboxGroupsContainer {
+    flex-direction: column;
+  }
 }

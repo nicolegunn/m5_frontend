@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import styles from "./ServicesDropdown.module.css";
 import { services, keyServices } from "./services.js";
 
-export default function ServicesDropdown({ onServiceSelection, onApplyFiltersButtonClick }) {
+export default function ServicesDropdown({
+  onServiceSelection,
+  onApplyFiltersButtonClick,
+}) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isNestedDropdownOpen, setIsNestedDropdownOpen] = useState({});
   const [selectedServices, setSelectedServices] = useState([]);
@@ -96,26 +99,29 @@ export default function ServicesDropdown({ onServiceSelection, onApplyFiltersBut
                 </div>
               ))}
             </div>
-            {selectedServices.length > 0 && (
-              <button
-                className={styles.removeAllServicesX}
+            <div className={styles.xAndArrowContainer}>
+              {selectedServices.length > 0 && (
+                <>
+                  <span
+                    className={styles.removeAllServicesX}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleRemoveAllServices();
+                    }}
+                  >
+                    ×
+                  </span>
+                  <span className={styles.divider}></span>
+                </>
+              )}
+              <span
+                className={`${styles.dropdownArrow} ${isDropdownOpen && styles.arrowUp}`}
                 onClick={(e) => {
                   e.stopPropagation();
-                  handleRemoveAllServices();
+                  toggleDropdown();
                 }}
-              >
-                ×
-              </button>
-            )}
-            {isDropdownOpen && (
-              <button
-                className={styles.closeDropdownX}
-                onClick={toggleDropdown}
-              >
-                ×
-              </button>
-            )}
-            <span className={styles.dropdownArrow}></span>
+              ></span>
+            </div>
           </div>
         </div>
 
@@ -153,7 +159,7 @@ export default function ServicesDropdown({ onServiceSelection, onApplyFiltersBut
                     }`}
                   >
                     {service.serviceFullName}
-                    <span className={styles.dropdownArrow}></span>
+                    <span className={`${styles.dropdownArrow} ${isNestedDropdownOpen[service.serviceFullName] && styles.arrowUp}`}></span>
                   </div>
                 ) : (
                   <label className={styles.customCheckbox}>
