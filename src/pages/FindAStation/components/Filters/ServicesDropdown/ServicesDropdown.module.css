@@ -1,0 +1,236 @@
+/* Wraps Entire Component */
+.servicesDropdown {
+  position: relative; /* ??*/
+  display: flex;
+  padding-block: 1rem;
+}
+
+/* The "Filter by services" title */
+.title {
+  padding-top: 0.5rem;
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+/* Wraps input container, drop down and key service ovals*/
+.flexColumnWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 600px; /* ?? sort this out later */
+}
+
+/* Wraps input box */
+.inputContainer {
+  position: relative; /* needed for x which uses absolute positioning */
+  cursor: pointer;
+}
+
+/* Input box  */
+.dropdownInput {
+  display: flex;
+  justify-content: space-between; /*??*/
+  align-items: center; /*??*/
+  padding: 0.5rem;
+  border: 1.5px var(--color-light-grey) solid;
+  border-radius: var(--b-radius-container);
+  transition: border-color 0.3s ease;
+}
+
+.dropdownInput:hover,
+.dropdownInput.dropdownOpen {
+  border-color: var(--color-orange);
+}
+
+.placeholder {
+  color: var(--color-grey);
+}
+
+/* Smaller box inside the input box that holds the selected oval shapes */
+.selectedServices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-width: 90%; /*??*/
+}
+
+/* Ovals inside the input box */
+.selectedService {
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--b-radius-button);
+  background-color: var(--color-purple);
+  color: var(--color-light);
+}
+
+/* The x that appears inside the oval selectedService*/
+.removeServiceX {
+  margin-left: 0.5rem;
+  color: var(--color-light);
+}
+
+/* The x that appears in the input box when something is selected  which clears all selected services */
+.removeAllServicesX {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  color: var(--color-purple);
+  font-size: 1.5rem;
+  transform: translateY(-50%);
+}
+
+/* The x that closes the dropdown menu */
+.closeDropdownX {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  color: var(--color-purple);
+  font-size: 1.5rem;
+  transform: translateY(-50%);
+}
+
+/* Arrow that appears inside the input box after the selectedServices container 
+    and inside the dropdownMenu
+*/
+.dropdownArrow {
+  width: 0;
+  height: 0;
+  margin-left: 0.5rem;
+  /* ?? sort arrow style out later */
+  border-top: 6px solid var(--color-dark);
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+}
+
+.dropdownMenu {
+  border: 1px var(--color-orange) solid;
+  border-radius: var(--b-radius-container);
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: bold;
+  list-style: none;
+}
+
+.dropdownMenu label,
+input,
+span {
+  cursor: pointer;
+}
+
+.serviceItem {
+  padding-block: 1rem;
+  padding-inline: 1rem;
+  border-bottom: 1px var(--color-light-grey) solid;
+}
+
+.serviceItem:hover,
+.serviceItem.selected {
+  background-color: var(--color-orange);
+}
+
+.serviceItem.heading {
+  padding-left: calc(30px + 1rem);
+}
+
+.serviceItem.heading.nestedOpen {
+  background-color: var(--color-purple);
+  color: var(--color-light);
+}
+
+.serviceItem label {
+  display: block; /* Label a block element so user can click anywhere on width of list to toggle checkbox */
+}
+
+.nestedServiceTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* This is the label that wraps around the input & text */
+.customCheckbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center; /* Vertically centers the checkbox and label - they are flex items/children */
+  padding-left: 30px; /* Adds padding to the left of the element, making space for the custom checkbox */
+  line-height: 23px; /* Text height to match checkbox height */
+  cursor: pointer;
+}
+
+/* Hides the actual input */
+.customCheckbox input {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+/* This is the checkbox */
+.customCheckbox .checkbox {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 24px;
+  height: 23px;
+  border: 1.5px var(--color-light-grey) solid;
+  border-radius: var(--b-radius-checkbox);
+  background-color: var(--color-light);
+  transform: translateY(
+    -50%
+  ); /* Offsets the element vertically by 50% of its own height, effectively centering it vertically */
+}
+
+/* This is the tick in the checkbox */
+.customCheckbox .checkbox:after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 8px;
+  display: none;
+  width: 7px;
+  height: 12px;
+  border: var(--color-purple) solid;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.customCheckbox input:checked + .checkbox:after {
+  /* Tick displays when input checked */
+  display: block;
+}
+
+.infoIcon {
+  margin-left: 0.5rem;
+}
+
+.applyFilterButton {
+  align-self: flex-start;
+  padding: 0.5rem 1rem;
+  border-radius: var(--b-radius-button);
+  background-color: var(--color-purple);
+  color: var(--color-light);
+  margin-left: 1rem;
+}
+
+.ovalButtons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.ovalButton {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--color-orange);
+  border-radius: var(--b-radius-button);
+  color: var(--color-purple);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.ovalButton.selected {
+  background-color: var(--color-purple);
+  color: var(--color-light);
+}
+
+.hidden {
+  display: none;
+}
