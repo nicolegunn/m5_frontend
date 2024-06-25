@@ -12,6 +12,7 @@
 
 /* Wraps input container, drop down and key service ovals*/
 .flexColumnWrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 40vw;
@@ -27,21 +28,18 @@
 .dropdownInput {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
+  min-height: 56px; /* This is the height when bubbles are added so set as minimum to avoid jumping and so the arrow and x looks better*/
   padding: 0.5rem 1rem;
   border: 1px var(--color-light-grey) solid;
   border-radius: var(--b-radius-container);
-  line-height: 1.5rem;
+  line-height: 1.5;
   transition: border-color 0.3s ease;
 }
 
 .dropdownInput:hover,
 .dropdownInput.dropdownOpen {
   border: 2px var(--color-orange) solid;
-}
-
-.placeholder {
-  color: var(--color-grey);
 }
 
 /* Smaller box inside the input box that holds the selected oval shapes */
@@ -51,10 +49,16 @@
   gap: 0.5rem;
 }
 
+.placeholder {
+  color: var(--color-grey);
+  align-self: center;
+}
+
 /* Ovals inside the input box */
 .selectedService {
   padding: 0.5rem 0.75rem;
   border-radius: var(--b-radius-button);
+  box-shadow: var(--shadow-button);
   background-color: var(--color-purple);
   color: var(--color-light);
   font-weight: bold;
@@ -68,18 +72,40 @@
 
 .xAndArrowContainer {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 /* The x that appears in the input box when something is selected  which clears all selected services */
 .removeAllServicesX {
-  margin-inline: 0.5rem;
+  position: relative;
+  width: var(--fs-desktop);
+  height: var(--fs-desktop);
+  margin-top: 12px;
   color: var(--color-purple);
-  font-size: calc((--fs-desktop) * 2);
+}
+
+.removeAllServicesX::before,
+.removeAllServicesX::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: var(--fs-desktop);
+  background-color: var(--color-purple);
+}
+
+.removeAllServicesX::before {
+  transform: rotate(45deg);
+}
+
+.removeAllServicesX::after {
+  transform: rotate(-45deg);
 }
 
 .divider {
-  height: 2rem;
+  height: 100%;
+  margin-right: 0.3rem;
   border-left: 1px var(--color-light-grey) solid;
   color: var(--color-light-grey);
 }
@@ -88,9 +114,9 @@
     and inside the dropdownMenu
 */
 .dropdownArrow {
-  width: 1rem;
-  height: 1rem;
-  margin-left: 0.5rem;
+  margin-top: 10px;
+  width: 12px;
+  height: 12px;
   border: var(--color-dark) solid;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
@@ -101,10 +127,14 @@
 }
 
 .dropdownMenu {
-  border: 1px var(--color-orange) solid;
+  position: absolute;
+  top: 100%;
+  z-index: 1000;
+  width: 100%;
+  border: 2px var(--color-orange) solid;
   border-radius: var(--b-radius-container);
   overflow: hidden;
-  font-weight: bold;
+  background-color: var(--color-light);
   list-style: none;
 }
 
@@ -126,7 +156,9 @@ span {
 }
 
 .serviceItem.heading {
-  padding-left: calc(30px + 1rem);
+  padding-left: calc(
+    var(--checkbox-size) + var(--checkbox-label-gap) + 1rem
+  ); /* Adds padding to the left of the element, making space for the custom checkbox */
 }
 
 .serviceItem.heading.nestedOpen {
@@ -149,8 +181,10 @@ span {
   position: relative;
   display: inline-flex;
   align-items: center; /* Vertically centers the checkbox and label - they are flex items/children */
-  padding-left: 30px; /* Adds padding to the left of the element, making space for the custom checkbox */
-  line-height: 23px; /* Text height to match checkbox height */
+  padding-left: calc(
+    var(--checkbox-size) + var(--checkbox-label-gap)
+  ); /* Adds padding to the left of the element, making space for the custom checkbox */
+  line-height: var(--checkbox-size); /* Text height to match checkbox height */
   cursor: pointer;
 }
 
@@ -167,9 +201,9 @@ span {
   position: absolute;
   top: 50%;
   left: 0;
-  width: 24px;
-  height: 23px;
-  border: 1.5px var(--color-light-grey) solid;
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
+  border: 1px var(--color-light-grey) solid;
   border-radius: var(--b-radius-checkbox);
   background-color: var(--color-light);
   transform: translateY(
@@ -181,11 +215,11 @@ span {
 .customCheckbox .checkbox:after {
   content: "";
   position: absolute;
-  top: 2px;
-  left: 8px;
+  top: calc(var(--checkbox-size) / 8);
+  left: calc(var(--checkbox-size) / 4);
   display: none;
-  width: 7px;
-  height: 12px;
+  width: calc(var(--checkbox-size) / 2.75);
+  height: calc(var(--checkbox-size) / 1.75);
   border: var(--color-purple) solid;
   border-width: 0 3px 3px 0;
   transform: rotate(45deg);
@@ -196,31 +230,71 @@ span {
   display: block;
 }
 
-.infoIcon {
-  margin-left: 0.5rem;
+.infoIconContainer {
+  position: relative;
 }
 
-.applyFilterButton {
+.infoIcon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--fs-desktop);
+  height: var(--fs-desktop);
+  margin-left: 0.25rem;
+  border: 1px solid #1355ff;
+  border-radius: 50%;
+  background-color: var(--color-light-grey);
+  color: #1355ff;
+  font-size: calc(var(--fs-desktop) * 0.5);
+}
+
+.iconText {
+  font-weight: bold;
+}
+
+.tooltip {
+  position: absolute;
+  top: -90%;
+  left: calc(100% + 24px);
+  z-index: 1100;
+  min-width: 150px;
+  padding: 0.5rem;
+  box-shadow: (--shadow-button);
+  background-color: var(--color-light-grey);
+  font-size: 10px;
+  line-height: normal;
+}
+
+.applyFiltersButton {
   align-self: flex-start;
   padding: 0.5rem 1rem;
+  margin-top: 10px;
   margin-left: 1rem;
   border-radius: var(--b-radius-button);
-  background-color: var(--color-purple);
+  background: linear-gradient(90deg, var(--color-purple) 0%, #2b2d9e 100%);
+  box-shadow: var(--shadow-button);
   color: var(--color-light);
+  font-weight: bold;
 }
 
 .ovalButtons {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 0.5rem;
   margin-block: 0.5rem;
 }
 
 .ovalButton {
-  padding: 0.5rem 1rem;
-  border: 2px solid var(--color-orange);
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-orange);
   border-radius: var(--b-radius-button);
+  box-shadow: var(--shadow-button);
   color: var(--color-purple);
+  font-size: var(--fs-mobile);
   font-weight: bold;
   cursor: pointer;
 }
@@ -242,6 +316,8 @@ span {
   .title {
     padding: 0px;
     margin: 0px;
+    margin-bottom: 10px;
+    font-size: var(--fs-desktop);
   }
 
   .flexColumnWrapper {
@@ -255,7 +331,13 @@ span {
     gap: 0.3rem;
   }
 
-  .divider {
+  .selectedService,
+  .ovalButton {
+    font-size: 12px;
+    font-weight: normal;
+  }
 
+  .applyFiltersButton {
+    margin: 2rem 0 1rem 0;
   }
 }

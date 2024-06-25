@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 :root {
   /* css variables */
-  --checkbox-size: clamp(16px, 1.67vw, 24px);
+  --checkbox-size: 24px;
   --checkbox-label-gap: calc(var(--checkbox-size) / 3);
   --padding-body-desktop: 11vw;
   --padding-body-mobile: 6vw;
-  --b-radius-container: 10px;
+  --b-radius-container: 8px;
   --b-radius-button: 16px;
   --b-radius-checkbox: 4px;
   --shadow-container: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);

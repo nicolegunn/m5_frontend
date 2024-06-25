@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-block: 10px;
   padding-inline: var(--padding-body-desktop);
   box-shadow: var(--shadow-container);
 }

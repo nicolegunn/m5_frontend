@@ -31,7 +31,7 @@
 
 @media (width < 600px) {
   .toggleAllFilters {
-    display: flex; /* unhides All filters bar */
+    display: flex; /* unhides 'All Filters' bar */
   }
 
   .checkboxGroupsContainer {
