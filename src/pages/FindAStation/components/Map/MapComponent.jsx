@@ -1,90 +1,138 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import styles from './MapComponent.module.css';
 
-
-//function to generate HTML content for the custom expanded markers. Displays fuel price, station name and status
-const getMarkerContent = (station, expanded, selectedFuelType) => {
-
-    // Find the price for the selected fuel type
-    const fuelType = station.fuelTypes.find(ft => ft.type === selectedFuelType) || station.fuelTypes[0];
-    const pricePerLitre = fuelType ? fuelType.pricePerLitre : 'N/A';
-
-    
-    return `
-        <div class="${expanded ? `${styles.customMarker} ${styles.expanded}` : styles.customMarker}">
-            <img src="/images/ZEnergyLogoWhite.png" alt="${station.name}" />
-            ${expanded ? `
-                <div class="${styles.markerInfo}">
-                    <strong>${pricePerLitre}/L</strong>
-                    <div class="name"> ${station.name}</div>
-                    <div class="status">${station.open24Hours ? 'Open 24 Hours' : '24/7 Pay at Pump'}</div>
-                </div>` : ''
-            }
-        </div>
-    `;
-};
-
-//Map component to render the Google Map with markers for each station.
-//It takes in an array of stations that is populated using the fetchStations function in FindAStation.jsx 
-//Also the selected fuelType to display in the expanded marker
-const MapComponent = ({ stations, selectedFuelType }) => {
+//Main component for rendering the map and search functionalities
+const MapComponent = ({ stations }) => {
     const mapRef = useRef(null);
+    const searchBoxRef = useRef(null);
+    const [map, setMap] = useState(null);
+    const [searchBox, setSearchBox] = useState(null);  // State to hold the searchBox
 
-    // Load the Google Maps JavaScript API
+    // useEffect to load the Google Maps API, initialize the map, and set up search functionality
     useEffect(() => {
         const loader = new Loader({
             apiKey: import.meta.env.VITE_MAP_API_KEY,
-            version: "weekly"
+            version: "weekly",
+            libraries: ["places"] //library from the API to zoom into specific places
         });
 
-        // Initialize the map once the API is loaded
+        // Asynchronous loading of the Google Maps script
         loader.load().then(() => {
-            const map = new window.google.maps.Map(mapRef.current, {
-                center: { lat: -40.9006, lng: 170.8860 },
-                zoom: 5.8,
-            });
-
-            // Track expanded state for each marker
-            const expandedMarkers = new Map();
-
-            // Loop through each station to create markers
-            stations.forEach(station => {
-                const markerHtml = document.createElement('div');
-                const markerId = station.id; // Ensure each station has a unique ID
-                markerHtml.innerHTML = getMarkerContent(station, false, selectedFuelType);
-                markerHtml.style.position = 'absolute';
-                expandedMarkers.set(markerId, false); // Initialize all markers as collapsed
-
-                // Add click event listener to toggle marker expansion
-                markerHtml.onclick = () => {
-                    const isExpanded = expandedMarkers.get(markerId);
-                    expandedMarkers.set(markerId, !isExpanded);
-                    markerHtml.innerHTML = getMarkerContent(station, !isExpanded);
-                    markerHtml.classList.toggle(styles.expanded, !isExpanded);
-                };
-
-                // Create an overlay to position the custom marker HTML on the map
-                const overlay = new window.google.maps.OverlayView();
-                overlay.onAdd = function() {
-                    const layer = this.getPanes().overlayMouseTarget;
-                    layer.appendChild(markerHtml);
-                    overlay.draw = function() {
-                        const projection = this.getProjection();
-                        const position = projection.fromLatLngToDivPixel(new window.google.maps.LatLng(station.coordinates.lat, station.coordinates.lon));
-                        markerHtml.style.left = `${position.x - 25}px`;
-                        markerHtml.style.top = `${position.y - 50}px`;
-                    };
-                };
-                overlay.setMap(map); // Add the overlay to the map
-            });
+            const loadedMap = initializeMap(mapRef.current);
+            setMap(loadedMap);
+            createMarkers(loadedMap, stations);
+            const initializedSearchBox = setupSearchBox(loadedMap, searchBoxRef.current);
+            setSearchBox(initializedSearchBox);  // Store the searchBox in state
         }).catch(e => {
             console.error("Failed to load Google Maps", e);
         });
+    }, [stations]);
 
-    }, [stations, selectedFuelType]);
+    const handleSearch = () => {
+        // Ensure the searchBox triggers the search without re-adding the input
+        if (searchBox) {
+            google.maps.event.trigger(searchBox, 'places_changed');
+        }
+    };
 
-    return <div ref={mapRef} className={styles.MapContainer} style={{ width: '100%', height: '700px' }} />;
+    return (
+        <div className={styles.mapContainer}>
+            <div className={styles.searchContainer}>
+                <input ref={searchBoxRef} type="text" placeholder="Search location" className={styles.searchBox} />
+                <button className={styles.searchButton} onClick={() => searchBoxRef.current && google.maps.event.trigger(searchBoxRef.current, 'places_changed')}>
+                    Search
+                </button>
+            </div>
+            <div ref={mapRef} className={styles.map}></div>
+        </div>
+    );
 };
+
+
+// Function to initialize the Google Map with provided settings
+function initializeMap(mapElement) {
+    return new window.google.maps.Map(mapElement, {
+        center: { lat: -40.9006, lng: 170.8860 },
+        zoom: 5.8,
+        mapTypeControl: false, 
+        fullscreenControl: false
+    });
+}
+
+// Function to set up the search box on the map
+//I can't recctify the line of code below with the div being rendered in Mapcomponent
+function setupSearchBox(map, inputElement) {
+    const searchBox = new google.maps.places.SearchBox(inputElement);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(inputElement); //this line of code. 
+
+    // Listener for when the user selects a place from the search suggestions
+    searchBox.addListener('places_changed', () => {
+        const places = searchBox.getPlaces();
+        if (places.length === 0) return;
+
+        const bounds = new google.maps.LatLngBounds();
+        places.forEach(place => {
+            if (place.geometry.viewport) {
+                bounds.union(place.geometry.viewport);
+            } else {
+                bounds.extend(place.geometry.location);
+            }
+        });
+        map.fitBounds(bounds);
+    });
+
+    return searchBox;
+}
+
+// Function to create and manage custom markers for stations
+function createMarkers(map, stations) {
+    stations.forEach(station => {
+        station.expanded = false;  // Initialize expanded state as false
+        const overlay = new window.google.maps.OverlayView();
+
+        overlay.onAdd = function() {
+            const div = document.createElement('div');
+            // Apply CSS module class names
+            div.className = station.expanded ? `${styles.customMarker} ${styles.expanded}` : styles.customMarker; 
+            div.style.position = 'absolute';
+            div.innerHTML = getMarkerContent(station, station.expanded); // Render based on expanded state
+
+            // Toggle the expansion of the marker on click
+            div.addEventListener('click', () => {
+                station.expanded = !station.expanded;  // Toggle the expanded state
+                div.className = station.expanded ? `${styles.customMarker} ${styles.expanded}` : styles.customMarker;  
+                div.innerHTML = getMarkerContent(station, station.expanded);  // Re-render the content
+            });
+
+            this.getPanes().overlayMouseTarget.appendChild(div);
+
+            overlay.draw = function() {
+                const projection = this.getProjection();
+                const position = projection.fromLatLngToDivPixel(new window.google.maps.LatLng(station.coordinates.lat, station.coordinates.lon));
+                // Adjust left and top to account for expanded size
+                div.style.left = `${position.x - (station.expanded ? 75 : 15)}px`; 
+                div.style.top = `${position.y - (station.expanded ? 30 : 15)}px`; 
+            };
+        };
+
+        overlay.setMap(map);
+    });
+}
+
+// Function to determine the content of markers based on whether they are expanded
+function getMarkerContent(station, expanded) {
+    if (expanded) {
+        return `
+            <div class="${styles.markerInfo}">
+                <strong>${station.fuelTypes[0].pricePerLitre}/L</strong>
+                <div class="${styles.name}">${station.name}</div>
+                <div class="${styles.status}">${station.open24Hours ? 'Open 24 Hours' : '24/7 Pay at Pump'}</div>
+            </div>
+            <img src="/images/ZEnergyLogoWhite.png" alt="Station" class="${styles.logo}">`;
+    } else {
+        return `<img src="/images/ZEnergyLogoWhite.png" alt="Station" class="${styles.logoFull}">`;
+    }
+}
 
 export default MapComponent;
