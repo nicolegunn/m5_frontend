@@ -119,3 +119,17 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+@media (width < 600px) {
+  .mapContainer {
+    width: auto;
+    margin-inline: calc(var(--padding-body-mobile) * -1);
+  }
+
+  .searchContainer {
+    position: static;
+    width: 100%;
+    padding: 1.5rem 2.5rem;
+    border-bottom-right-radius: 0px;
+  }
+}
