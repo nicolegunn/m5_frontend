@@ -111,14 +111,18 @@ export default function ServicesDropdown({
                       e.stopPropagation();
                       handleRemoveAllServices();
                     }}
+
                   ></span>
+
                   <span className={styles.divider}></span>
                 </>
               )}
               <span
+
                 className={`${styles.dropdownArrow} ${
                   isDropdownOpen && styles.arrowUp
                 }`}
+                
                 onClick={(e) => {
                   e.stopPropagation();
                   toggleDropdown();

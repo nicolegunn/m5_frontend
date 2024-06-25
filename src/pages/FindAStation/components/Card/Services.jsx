@@ -45,7 +45,7 @@ function Services({ services }) {
                     </span>
                   </div>
                 ))}
-            {services.length > 6 && (
+            {services.length > 4 && (
               <p className={styles.expandButton} onClick={toggleServicesExpand}>
                 {isServicesExpanded ? "View less" : `...View more`}
               </p>
