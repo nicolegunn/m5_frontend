@@ -111,14 +111,18 @@ export default function ServicesDropdown({
                       e.stopPropagation();
                       handleRemoveAllServices();
                     }}
+
                   ></span>
+
                   <span className={styles.divider}></span>
                 </>
               )}
               <span
+
                 className={`${styles.dropdownArrow} ${
                   isDropdownOpen && styles.arrowUp
                 }`}
+                
                 onClick={(e) => {
                   e.stopPropagation();
                   toggleDropdown();
@@ -162,12 +166,14 @@ export default function ServicesDropdown({
                     }`}
                   >
                     {service.serviceFullName}
+
                     <span
                       className={`${styles.dropdownArrow} ${
                         isNestedDropdownOpen[service.serviceFullName] &&
                         styles.arrowUp
                       }`}
                     ></span>
+
                   </div>
                 ) : (
                   <label className={styles.customCheckbox}>
