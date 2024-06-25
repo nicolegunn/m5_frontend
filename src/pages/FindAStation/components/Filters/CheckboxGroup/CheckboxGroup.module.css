@@ -1,10 +1,15 @@
 .checkboxGroup {
   display: flex;
-  gap: calc(var(--checkbox-label-gap) * 2.5)
+  gap: calc(var(--checkbox-label-gap) * 2.5);
 }
 
 .checkboxTitle {
   font-weight: bold;
+}
+
+.checkboxesContainer {
+  display: flex;
+  gap: calc(var(--checkbox-label-gap) * 2.5);
 }
 
 /* This is the label that wraps around the input & text */
@@ -12,7 +17,9 @@
   position: relative;
   display: inline-flex;
   align-items: center; /* Vertically centers the checkbox and label - they are flex items/children */
-  padding-left: calc(var(--checkbox-size) + var(--checkbox-label-gap)); /* Adds padding to the left of the element, making space for the custom checkbox */
+  padding-left: calc(
+    var(--checkbox-size) + var(--checkbox-label-gap)
+  ); /* Adds padding to the left of the element, making space for the custom checkbox */
   line-height: var(--checkbox-size); /* Text height to match checkbox height */
   cursor: pointer;
 }
@@ -56,4 +63,20 @@
 .customCheckbox input:checked + .checkbox:after {
   /* Tick displays when input checked */
   display: block;
+}
+
+@media (width < 600px) {
+  .checkboxGroup {
+    flex-direction: column;
+  }
+
+  .checkboxTitle {
+    font-size: var(--fs-desktop);
+  }
+
+  .checkboxesContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+  }
 }

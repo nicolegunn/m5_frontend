@@ -34,18 +34,20 @@ export default function CheckboxGroup({ title, options, onChange }) {
   return (
     <div className={styles.checkboxGroup}>
       <h3 className={styles.checkboxTitle}>{title}</h3>
-      {options.map((option, index) => (
-        <label className={styles.customCheckbox} key={index}>
-          <input
-            type="checkbox"
-            value={option}
-            checked={checkedItems[option]}
-            onChange={handleCheckboxChange}
-          />
-          <span className={styles.checkbox}></span>
-          {option}
-        </label>
-      ))}
+      <div className={ styles.checkboxesContainer}>
+        {options.map((option, index) => (
+          <label className={styles.customCheckbox} key={index}>
+            <input
+              type="checkbox"
+              value={option}
+              checked={checkedItems[option]}
+              onChange={handleCheckboxChange}
+            />
+            <span className={styles.checkbox}></span>
+            {option}
+          </label>
+        ))}
+      </div>
     </div>
   );
 }

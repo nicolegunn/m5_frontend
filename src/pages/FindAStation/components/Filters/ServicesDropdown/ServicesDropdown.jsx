@@ -9,6 +9,7 @@ export default function ServicesDropdown({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isNestedDropdownOpen, setIsNestedDropdownOpen] = useState({});
   const [selectedServices, setSelectedServices] = useState([]);
+  const [showTooltip, setShowTooltip] = useState({});
 
   useEffect(() => {
     const serviceDatabaseNames = selectedServices.map(
@@ -59,9 +60,11 @@ export default function ServicesDropdown({
     );
   };
 
-  const handleTooltipClick = (e, service) => {
-    e.stopPropagation();
-    alert(`Information about ${service}`);
+  const handleTooltip = (serviceFullName, show) => {
+    setShowTooltip((prev) => ({
+      ...prev,
+      [serviceFullName]: show,
+    }));
   };
 
   return (
@@ -108,14 +111,18 @@ export default function ServicesDropdown({
                       e.stopPropagation();
                       handleRemoveAllServices();
                     }}
-                  >
-                    ×
-                  </span>
+
+                  ></span>
+
                   <span className={styles.divider}></span>
                 </>
               )}
               <span
-                className={`${styles.dropdownArrow} ${isDropdownOpen && styles.arrowUp}`}
+
+                className={`${styles.dropdownArrow} ${
+                  isDropdownOpen && styles.arrowUp
+                }`}
+                
                 onClick={(e) => {
                   e.stopPropagation();
                   toggleDropdown();
@@ -159,7 +166,14 @@ export default function ServicesDropdown({
                     }`}
                   >
                     {service.serviceFullName}
-                    <span className={`${styles.dropdownArrow} ${isNestedDropdownOpen[service.serviceFullName] && styles.arrowUp}`}></span>
+
+                    <span
+                      className={`${styles.dropdownArrow} ${
+                        isNestedDropdownOpen[service.serviceFullName] &&
+                        styles.arrowUp
+                      }`}
+                    ></span>
+
                   </div>
                 ) : (
                   <label className={styles.customCheckbox}>
@@ -177,13 +191,26 @@ export default function ServicesDropdown({
                     <span className={styles.checkbox}></span>
                     {service.serviceFullName}
                     {service.serviceFullName.startsWith("EV") && (
-                      <span
-                        className={styles.infoIcon}
-                        onClick={(e) =>
-                          handleTooltipClick(e, service.serviceFullName)
-                        }
-                      >
-                        ℹ️
+                      <span className={styles.infoIconContainer}>
+                        <span
+                          className={styles.infoIcon}
+                          onMouseEnter={() =>
+                            handleTooltip(service.serviceFullName, true)
+                          }
+                          onMouseLeave={() =>
+                            handleTooltip(service.serviceFullName, false)
+                          }
+                        >
+                          <i className={styles.iconText}>i</i>
+                        </span>
+                        {showTooltip[service.serviceFullName] && (
+                          <div
+                            className={styles.tooltip}
+                            dangerouslySetInnerHTML={{
+                              __html: service.tooltip,
+                            }}
+                          ></div>
+                        )}
                       </span>
                     )}
                   </label>
@@ -216,10 +243,10 @@ export default function ServicesDropdown({
         </div>
       </div>
       <button
-        className={styles.applyFilterButton}
+        className={styles.applyFiltersButton}
         onClick={onApplyFiltersButtonClick}
       >
-        Apply Filter
+        Apply Filters
       </button>
     </div>
   );

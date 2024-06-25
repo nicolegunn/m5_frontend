@@ -1,10 +1,7 @@
 .mapContainer {
-    width: '100%'; 
-    height: '700px'; 
-    border: '1px solid #ccc'; 
-    margin-top: '20px'; 
-    border-radius: '8px'; 
-    box-shadow: '0 2px 6px rgba(0, 0, 0, 0.3)'; 
+    position: relative;
+    width: 100%;
+    height: 800px;
 }
 
 .customMarker {
@@ -19,6 +16,11 @@
     align-items: center;  
     transition: all 0.3s ease;  
     color: var(--color-light); 
+}
+
+.map {
+    height: 700px;
+    width: auto;
 }
 
 .customMarker img {
@@ -55,4 +57,47 @@
 
 .markerInfo .status {
     font-size: 0.6rem; 
+}
+
+.searchContainer {
+    position: absolute;
+    flex-direction: column;
+    top: 20px;  
+    left: 20px;  
+    display: flex;
+    align-items: center;
+    background-color: var(--color-light); 
+    padding: 10px;
+    border-radius: 8px;
+    z-index: 1000; 
+    height: 20%;
+    width: 20%;
+    background-color: var(--color-orange);
+}
+
+.title {
+    margin-right: 10px; 
+    font-size: 16px; 
+    color: var(--color-light);
+    
+}
+
+.searchBox {
+    flex-grow: 1;
+    padding: 8px;
+    margin-right: 10px; /* Space between the input and the button */
+    border: var(--color-light-grey);
+    border-radius: 4px;
+    outline: none;
+    height: 20%;
+}
+
+.searchButton {
+    padding: 8px 12px;
+    background-color: var(--color-purple);
+    color: var(--color-light);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
 }
