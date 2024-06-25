@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import mapPointIcon from "../../../../../src/assets/map-point-icon.svg";
 import { Loader } from "@googlemaps/js-api-loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

@@ -126,99 +126,95 @@ export default function ServicesDropdown({
               ></span>
             </div>
           </div>
+
+          {isDropdownOpen && (
+            <ul className={styles.dropdownMenu}>
+              {services.map((service) => (
+                <li
+                  key={service.serviceFullName}
+                  className={`${styles.serviceItem} ${
+                    selectedServices.find(
+                      (s) => s.serviceFullName === service.serviceFullName
+                    )
+                      ? styles.selected
+                      : ""
+                  } ${service.type === "heading" ? styles.heading : ""} ${
+                    service.nested && !isNestedDropdownOpen[service.nested]
+                      ? styles.hidden
+                      : ""
+                  }${
+                    service.type === "heading" &&
+                    isNestedDropdownOpen[service.serviceFullName]
+                      ? styles.nestedOpen
+                      : ""
+                  }`}
+                >
+                  {service.type === "heading" ? (
+                    <div
+                      onClick={() =>
+                        toggleNestedDropdown(service.serviceFullName)
+                      }
+                      className={`${styles.nestedServiceTitle} ${
+                        isNestedDropdownOpen[service.serviceFullName]
+                          ? styles.nestedOpen
+                          : ""
+                      }`}
+                    >
+                      {service.serviceFullName}
+                      <span
+                        className={`${styles.dropdownArrow} ${
+                          isNestedDropdownOpen[service.serviceFullName] &&
+                          styles.arrowUp
+                        }`}
+                      ></span>
+                    </div>
+                  ) : (
+                    <label className={styles.customCheckbox}>
+                      <input
+                        type="checkbox"
+                        checked={
+                          !!selectedServices.find(
+                            (s) => s.serviceFullName === service.serviceFullName
+                          )
+                        }
+                        onChange={() =>
+                          toggleSelectService(service.serviceFullName)
+                        }
+                      />
+                      <span className={styles.checkbox}></span>
+                      {service.serviceFullName}
+                      {service.serviceFullName.startsWith("EV") && (
+                        <span className={styles.infoIconContainer}>
+                          <span
+                            className={styles.infoIcon}
+                            onMouseEnter={() =>
+                              handleTooltip(service.serviceFullName, true)
+                            }
+                            onMouseLeave={() =>
+                              handleTooltip(service.serviceFullName, false)
+                            }
+                          >
+                            <i className={styles.iconText}>i</i>
+                          </span>
+                          {showTooltip[service.serviceFullName] && (
+                            <div
+                              className={styles.tooltip}
+                              dangerouslySetInnerHTML={{
+                                __html: service.tooltip,
+                              }}
+                            ></div>
+                          )}
+                        </span>
+                      )}
+                    </label>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
-        {isDropdownOpen && (
-          <ul className={styles.dropdownMenu}>
-            {services.map((service) => (
-              <li
-                key={service.serviceFullName}
-                className={`${styles.serviceItem} ${
-                  selectedServices.find(
-                    (s) => s.serviceFullName === service.serviceFullName
-                  )
-                    ? styles.selected
-                    : ""
-                } ${service.type === "heading" ? styles.heading : ""} ${
-                  service.nested && !isNestedDropdownOpen[service.nested]
-                    ? styles.hidden
-                    : ""
-                }${
-                  service.type === "heading" &&
-                  isNestedDropdownOpen[service.serviceFullName]
-                    ? styles.nestedOpen
-                    : ""
-                }`}
-              >
-                {service.type === "heading" ? (
-                  <div
-                    onClick={() =>
-                      toggleNestedDropdown(service.serviceFullName)
-                    }
-                    className={`${styles.nestedServiceTitle} ${
-                      isNestedDropdownOpen[service.serviceFullName]
-                        ? styles.nestedOpen
-                        : ""
-                    }`}
-                  >
-                    {service.serviceFullName}
-                    <span
-                      className={`${styles.dropdownArrow} ${
-                        isNestedDropdownOpen[service.serviceFullName] &&
-                        styles.arrowUp
-                      }`}
-                    ></span>
-                  </div>
-                ) : (
-                  <label className={styles.customCheckbox}>
-                    <input
-                      type="checkbox"
-                      checked={
-                        !!selectedServices.find(
-                          (s) => s.serviceFullName === service.serviceFullName
-                        )
-                      }
-                      onChange={() =>
-                        toggleSelectService(service.serviceFullName)
-                      }
-                    />
-                    <span className={styles.checkbox}></span>
-                    {service.serviceFullName}
-                    {service.serviceFullName.startsWith("EV") && (
-                      <span className={styles.infoIconContainer}>
-                        <span
-                          className={styles.infoIcon}
-                          onMouseEnter={() =>
-                            handleTooltip(service.serviceFullName, true)
-                          }
-                          onMouseLeave={() =>
-                            handleTooltip(service.serviceFullName, false)
-                          }
-                        >
-                          <i className={styles.iconText}>i</i>
-                        </span>
-                        {showTooltip[service.serviceFullName] && (
-                          <div
-                            className={styles.tooltip}
-                            dangerouslySetInnerHTML={{
-                              __html: service.tooltip,
-                            }}
-                          ></div>
-                        )}
-                      </span>
-                    )}
-                  </label>
-                )}
-              </li>
-            ))}
-          </ul>
-        )}
-
-        <div
-          className={`${styles.ovalButtons} ${
-            isDropdownOpen ? styles.hidden : ""
-          }`}
-        >
+        <div className={styles.ovalButtons}>
           {keyServices.map((keyService) => (
             <button
               key={keyService.serviceFullName}

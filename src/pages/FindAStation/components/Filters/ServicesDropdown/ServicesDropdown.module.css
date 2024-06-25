@@ -21,6 +21,7 @@
 
 /* Wraps input box */
 .inputContainer {
+  position: relative;
   cursor: pointer;
 }
 
@@ -155,6 +156,11 @@ span {
   background-color: var(--color-orange);
 }
 
+.serviceItem:hover *,
+.serviceItem.selected * {
+  border-color: var(--color-light);
+}
+
 .serviceItem.heading {
   padding-left: calc(
     var(--checkbox-size) + var(--checkbox-label-gap) + 1rem
@@ -164,6 +170,10 @@ span {
 .serviceItem.heading.nestedOpen {
   background-color: var(--color-purple);
   color: var(--color-light);
+}
+
+.serviceItem.heading.nestedOpen * {
+  border-color: var(--color-light);
 }
 
 .serviceItem label {
