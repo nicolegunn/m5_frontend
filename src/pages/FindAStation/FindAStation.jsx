@@ -41,7 +41,7 @@ export default function FindAStation() {
         Home &gt; <span>Find a station</span>
       </h3>
       <Filters fetchStations={handleApplyFilters} />
-      <MapComponent stations={stations} selectedFuelType={selectedFuelType}/>
+      <MapComponent stations={stations} />
       {/* {stations.map((station) => (
         <Card key={station.name} station={station} />
       ))} */}
