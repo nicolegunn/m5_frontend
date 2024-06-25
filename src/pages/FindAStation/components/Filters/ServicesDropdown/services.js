@@ -7,6 +7,8 @@ export const services = [
     serviceDatabaseName: "EV Charging - Fast",
     type: "checkbox",
     nested: "EV Charging",
+    tooltip:
+      "At a 50kW fast charger, you'll get roughly 100km of range every 13 minutes of charging.",
   },
   {
     serviceFullName: "EV - Ultra Fast",
@@ -14,6 +16,8 @@ export const services = [
     serviceDatabaseName: "EV Charging - Ultra-Fast",
     type: "checkbox",
     nested: "EV Charging",
+    tooltip:
+      "At a 180kW ultra-fast charger, you'll get roughly 100km of range every 8 minutes of charging.",
   },
   {
     serviceFullName: "Bathrooms",
