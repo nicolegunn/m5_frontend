@@ -14,7 +14,6 @@
   align-items: center; /* Vertically centers the checkbox and label - they are flex items/children */
   padding-left: calc(var(--checkbox-size) + var(--checkbox-label-gap)); /* Adds padding to the left of the element, making space for the custom checkbox */
   line-height: var(--checkbox-size); /* Text height to match checkbox height */
-  font-size: 15px;
   cursor: pointer;
 }
 
@@ -33,9 +32,8 @@
   left: 0;
   width: var(--checkbox-size);
   height: var(--checkbox-size);
-  border: 1.5px var(--color-light-grey) solid;
+  border: 1px var(--color-light-grey) solid;
   border-radius: var(--b-radius-checkbox);
-  background-color: var(--color-light);
   transform: translateY(
     -50%
   ); /* Offsets the element vertically by 50% of its own height, effectively centering it vertically */

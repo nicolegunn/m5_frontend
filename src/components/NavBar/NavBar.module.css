@@ -2,11 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10px;
-  padding-inline: 11vw; /*To match margin in FindAStation Component */
-  background-color: var(--color-light);
-  font-family: var(--ff-ss);
-  border-bottom: 2px solid var(--grey, #d6d0d0);
+  padding-inline: var(--padding-body-desktop);
+  box-shadow: var(--shadow-container);
 }
 
 button {
@@ -49,7 +46,7 @@ button {
   display: none;
   position: absolute;
   background-color: var(--color-light);
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-container);
   z-index: 1;
   min-width: 160px;
 }
@@ -115,7 +112,11 @@ button {
   display: none;
 }
 
-@media (max-width: 600px) {
+@media (width < 600px) {
+  .navbar {
+    padding-inline: var(--padding-body-mobile);
+  }
+
   .navMenu {
     display: none;
   }
