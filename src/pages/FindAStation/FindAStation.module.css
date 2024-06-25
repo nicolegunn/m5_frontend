@@ -1,12 +1,21 @@
 .mainContainer {
- margin-inline: 11vw; /* Padding in NavBar set to match this */ 
- font-size: 16px;
+  padding-inline: var(--padding-body-desktop);
 }
 
-.path{
-margin-block: 2rem;
+.path {
+  margin-top: 2rem;
 }
 
-.path span{
-font-weight: bold;
+.path span {
+  font-weight: bold;
+}
+
+@media (width < 600px) {
+  .mainContainer {
+    padding-inline: var(--padding-body-mobile);
+  }
+
+  .path {
+    margin-top: 1.25rem;
+  }
 }

@@ -1,20 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 :root {
   /* css variables */
+  --checkbox-size: clamp(16px, 1.67vw, 24px);
+  --checkbox-label-gap: calc(var(--checkbox-size) / 3);
+  --padding-body-desktop: 11vw;
+  --padding-body-mobile: 6vw;
   --b-radius-container: 10px;
   --b-radius-button: 16px;
   --b-radius-checkbox: 4px;
-  --checkbox-size: clamp(16px, 1.67vw, 24px);
-  --checkbox-label-gap: calc(var(--checkbox-size) / 3);
-  --color-dark: #000;
+  --shadow-container: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);
+  --shadow-button: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+  --color-dark: #000; /* Not in colour pallet */
   --color-medium: #353535;
   --color-light: #fff;
-  --color-grey: #808080;
+  --color-grey: #808080; /* Not in colour pallet */
   --color-light-grey: #dedddd;
-  --color-purple: #1c1d66; 
+  --color-purple: #1c1d66;
   --color-orange: #ed560e;
   --color-yellow: #ffcb08;
   --ff-ss: "Inter", sans-serif;
+  --fs-desktop: 1rem;
+  --fs-mobile: calc(var(var(--fs-desktop) * 0.875)); /* 14px */
 }
 
 *,
@@ -31,4 +37,11 @@ body {
   background-color: var(--color-light);
   color: var(--color-dark);
   font-family: var(--ff-ss);
+  font-size: var(--fs-desktop);
+}
+
+@media (width < 600px) {
+  body {
+    font-size: var(--fs-mobile);
+  }
 }
