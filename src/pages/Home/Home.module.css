@@ -1,18 +1,51 @@
-.Heading {
-  color: blueviolet;
-  font-size: 100px;
-}
-
 body, html {
   margin: 0;
   padding: 0;
 }
 
 .homeContainer {
+  height: 100%;
+  width: 100%;
 }
 
-.homeImages {
+@media (min-width: 600px){
+  .homeContainer {
+    height: 100%;
+    width: 100%;
+  }
+.homeImagesDesktop {
   max-width: 100%;
   padding: 0;
   margin: 0;
+  object-fit: contain;
 }
+.homeImagesMobile {
+  display: none;
+}
+}
+@media (max-width: 600px){
+  .homeContainer {
+    height: 100%;
+    width: 100%;
+  }
+  .homeContainer {
+    position: relative;
+  }
+.homeImagesDesktop {
+  display: none;
+}
+.homeImagesMobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+
+}
+
+
+
+
