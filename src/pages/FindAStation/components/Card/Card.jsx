@@ -1,8 +1,4 @@
 import styles from "./Card.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-
-import { useState } from "react";
 import OpeningHours from "./OpeningHours";
 import Services from "./Services";
 
@@ -38,7 +34,8 @@ function Card({ station }) {
             <div className={styles.directionsContainer}><p className={styles.directionsContent}><img className={styles.directionsIcon} src="/images/cardImages/directions.png" alt="" />Directions</p></div>
           </div> 
         </div>
-        <Services services={station.services} />
+
+        {station.services.length > 0 && <Services services={station.services} />}
       </div>
     </div>
   );
