@@ -40,6 +40,10 @@ body {
   font-size: var(--fs-desktop);
 }
 
+button{
+  outline: none;
+}
+
 @media (width < 600px) {
   body {
     font-size: var(--fs-mobile);

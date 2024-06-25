@@ -38,7 +38,7 @@ const MapComponent = ({ stations }) => {
           <input
             ref={searchBoxRef}
             type="text"
-            placeholder="Search location"
+            placeholder="Enter a location / station / truckstop"
             className={styles.searchBox}
           />
           <FontAwesomeIcon
