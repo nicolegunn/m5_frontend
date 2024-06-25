@@ -1,4 +1,3 @@
-import Footer from "../../components/Footer/Footer";
 import styles from "./Home.module.css";
 
 export default function Home() {
@@ -21,7 +20,7 @@ export default function Home() {
             <img className={styles.homeImagesMobile} src="/images/homeMobile/share-tank.png" alt="" />
             <img className={styles.homeImagesMobile} src="/images/homeMobile/sharetank.png" alt="" />
 
-            <Footer />
+
             
         </div>
     ); 

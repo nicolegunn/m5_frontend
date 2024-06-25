@@ -1,0 +1,17 @@
+<svg width="20" height="23" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Mini Icons/Default">
+<path id="Subtract" fill-rule="evenodd" clip-rule="evenodd" d="M10 23C15.8135 23 20 21.2091 20 19C20 16.7909 15.8135 15 10 15C4.18648 15 0 16.7909 0 19C0 21.2091 4.18648 23 10 23ZM10 21.9999C14.9706 21.9999 19 20.6568 19 18.9999C19 17.3431 14.9706 16 10 16C5.02944 16 1 17.3432 1 19.0001C1 20.6569 5.02944 21.9999 10 21.9999Z" fill="url(#paint0_linear_349_4626)"/>
+<path id="Subtract_2" fill-rule="evenodd" clip-rule="evenodd" d="M10.2189 20.7846C11.6261 19.41 16.5583 14.5918 17.4998 8C17.9998 3.5 14.4181 0 9.99981 0C5.5815 0 1.99997 3.5 2.49981 8C3.44168 14.5919 8.37386 19.4102 9.78083 20.7847C9.86793 20.8698 9.94151 20.9417 9.99981 21C10.0581 20.9417 10.1318 20.8698 10.2189 20.7846ZM12.4997 7.55018C12.4997 8.93089 11.3805 10.0502 9.99974 10.0502C8.61903 10.0502 7.49974 8.93089 7.49974 7.55018C7.49974 6.16946 8.61903 5.05018 9.99974 5.05018C11.3805 5.05018 12.4997 6.16946 12.4997 7.55018Z" fill="url(#paint1_linear_349_4626)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_349_4626" x1="20" y1="19" x2="0" y2="19" gradientUnits="userSpaceOnUse">
+<stop stop-color="#EE9649"/>
+<stop offset="1" stop-color="#D14E14"/>
+</linearGradient>
+<linearGradient id="paint1_linear_349_4626" x1="17.5465" y1="10.5" x2="2.45312" y2="10.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="#EE984A"/>
+<stop offset="0.5" stop-color="#E8833F"/>
+<stop offset="1" stop-color="#DD622D"/>
+</linearGradient>
+</defs>
+</svg>

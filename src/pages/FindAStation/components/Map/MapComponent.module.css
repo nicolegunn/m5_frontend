@@ -1,103 +1,157 @@
 .mapContainer {
-    position: relative;
-    width: 100%;
-    height: 800px;
+  position: relative;
+  width: 100%;
 }
 
 .customMarker {
-    cursor: pointer;
-    background-color: var(--color-orange);  
-    padding: 5px;  
-    border-radius: 50%;  
-    width: 30px;  
-    height: 30px;  
-    display: flex;  
-    justify-content: center;  
-    align-items: center;  
-    transition: all 0.3s ease;  
-    color: var(--color-light); 
+  cursor: pointer;
+  background-color: var(--color-orange);
+  padding: 5px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  color: var(--color-light);
 }
 
 .map {
-    height: 700px;
-    width: auto;
+  width: 100%;
+  aspect-ratio: 0.875;
 }
 
 .customMarker img {
-    width: 20px;  
-    height: 20px; 
-    display: block; 
+  width: 20px;
+  height: 20px;
+  display: block;
 }
 
 .customMarker.expanded {
-    width: 150px;
-    height: 60px; 
-    flex-direction: row;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background-color: var(--color-orange);
-    border-radius: 80px;
+  width: 150px;
+  height: 60px;
+  flex-direction: row;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: var(--color-orange);
+  border-radius: 80px;
 }
 
 .markerInfo {
-    padding: 5px;
-    border-radius: 5px;
-    margin-top: 5px;
-    font-size: 12px;
-    color: var(--color-light);
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 5px;
+  font-size: 12px;
+  color: var(--color-light);
 }
 
 .markerInfo strong {
-    font-size: 1.2rem; 
-    font-weight: bold;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .markerInfo .name {
-    font-size: 0.8rem; 
+  font-size: 0.8rem;
 }
 
 .markerInfo .status {
-    font-size: 0.6rem; 
+  font-size: 0.6rem;
 }
 
 .searchContainer {
-    position: absolute;
-    flex-direction: column;
-    top: 20px;  
-    left: 20px;  
-    display: flex;
-    align-items: center;
-    background-color: var(--color-light); 
-    padding: 10px;
-    border-radius: 8px;
-    z-index: 1000; 
-    height: 20%;
-    width: 20%;
-    background-color: var(--color-orange);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  min-width: 360px;
+  padding: 30px 20px 20px 30px;
+  border-bottom-right-radius: var(--b-radius-container);
+  background: linear-gradient(
+    90deg,
+    var(--color-orange) 30%,
+    var(--color-yellow) 115.09%
+  );
 }
 
-.title {
-    margin-right: 10px; 
-    font-size: 16px; 
-    color: var(--color-light);
-    
+.findAStationTitle {
+  color: var(--color-light);
+  font-size: calc(var(--fs-desktop) * 2);
+  font-weight: 800;
+}
+
+.inputContainer {
+  position: relative;
+  display: flex;
 }
 
 .searchBox {
-    flex-grow: 1;
-    padding: 8px;
-    margin-right: 10px; /* Space between the input and the button */
-    border: var(--color-light-grey);
-    border-radius: 4px;
-    outline: none;
-    height: 20%;
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1.75rem;
+  margin-bottom: 1.375rem;
+  border-radius: var(--b-radius-checkbox);
+  outline: none;
+  box-shadow: 4px 4px 4px 2px rgba(0, 0, 0, 0.25);
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.searchBox::placeholder {
+  font-weight: normal;
+}
+
+.magnifyingGlass {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-35%); /* Center vertically */
+  color: var(--color-orange);
+  font-size: 1.25rem;
 }
 
 .searchButton {
-    padding: 8px 12px;
-    background-color: var(--color-purple);
-    color: var(--color-light);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    outline: none;
+  display: flex;
+  gap: 0.5rem;
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  border-radius: var(--b-radius-button);
+  background: linear-gradient(90deg, #1e196a 0%, #241e81 50%, #2e26a1 100%);
+  box-shadow: var(--shadow-button);
+  color: var(--color-light);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+@media (width < 600px) {
+  .mapContainer {
+    width: auto;
+    margin-inline: calc(var(--padding-body-mobile) * -1);
+  }
+
+  .searchContainer {
+    position: static;
+    width: 100%;
+    min-width: none;
+    padding: 30px 18px 18px 18px;
+    border-bottom-right-radius: 0px;
+  }
+
+  .findAStationTitle {
+    font-size: 24px;
+  }
+
+  .searchBox {
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 12px;
+  }
+
+  .magnifyingGlass {
+    font-size: 1rem;
+    transform: translateY(-45%);
+  }
 }
