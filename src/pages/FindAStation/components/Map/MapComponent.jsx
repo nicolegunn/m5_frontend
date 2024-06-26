@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import mapPointIcon from "../../../../../src/assets/map-point-icon.svg";
 import { Loader } from "@googlemaps/js-api-loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faFilter } from "@fortawesome/free-solid-svg-icons";
 import styles from "./MapComponent.module.css";
 import Card from "../Card/Card";
 
@@ -11,6 +11,7 @@ const MapComponent = ({ stations }) => {
   const searchBoxRef = useRef(null);
   const [map, setMap] = useState(null);
   const [filteredStations, setFilteredStations] = useState([]);  // new array for stations within radius
+  const [showCardContainer, setShowCardContainer] = useState(false);  // Control visibility of the card container
 
   //loads the map with necessary API validations and libraries
   useEffect(() => {
@@ -26,7 +27,7 @@ const MapComponent = ({ stations }) => {
         const loadedMap = initializeMap(mapRef.current);
         setMap(loadedMap);
         createMarkers(loadedMap, stations);
-        setupSearchBox(loadedMap, searchBoxRef.current, stations, setFilteredStations);
+        setupSearchBox(loadedMap, searchBoxRef.current, stations, setFilteredStations, setShowCardContainer);
       })
       .catch((e) => {
         console.error("Failed to load Google Maps", e);
@@ -61,10 +62,21 @@ const MapComponent = ({ stations }) => {
         </button>
       </div>
 
-      <div className={styles.cardContainer}>
-          <h1 className={styles.stationHeader}>{filteredStations.length} Stations Found</h1>
-          {filteredStations.map(station => <Card key={station.name} station={station} />)}
-      </div>
+      {showCardContainer && (
+
+                <div className={styles.cardContainer}>
+                
+                    <div className={styles.stationHeader}>
+                      <div className={styles.headerContent}>
+                        <h1>{filteredStations.length} Stations Found</h1>
+                        <button className={styles.filterButton}>
+                        <FontAwesomeIcon icon={faFilter} /> Sort by
+                        </button>
+                      </div>
+                    </div>
+                    {filteredStations.map(station => <Card key={station.name} station={station} />)}
+                </div>
+            )}
       <div ref={mapRef} className={styles.map}></div>
     </div>
   );
@@ -81,10 +93,12 @@ function initializeMap(mapElement) {
 
 //function that handles the searching
 //takes in the map and input element and array of stations and new array of stations within the radius of area entered. 
-function setupSearchBox(map, inputElement, stations, setFilteredStations) {
+function setupSearchBox(map, inputElement, stations, setFilteredStations, setShowCardContainer) {
   const searchBox = new google.maps.places.SearchBox(inputElement);
   searchBox.addListener('places_changed', () => {
       const places = searchBox.getPlaces();
+
+      setShowCardContainer(true);
       if (places.length === 0) return;
 
       //takes the location of the place entered by the user and sets radius around it
@@ -165,20 +179,19 @@ function createMarkers(map, stations) {
 // Function to determine the content of markers based on whether they are expanded
 function getMarkerContent(station, expanded) {
   if (expanded) {
-    return `
-            <div class="${styles.markerInfo}">
-                <strong>${station.fuelTypes[0].pricePerLitre}/L</strong>
-                <div class="${styles.name}">${station.name}</div>
-                <div class="${styles.status}">${
-      station.open24Hours ? "Open 24 Hours" : "24/7 Pay at Pump"
-    }</div>
-            </div>
-            <img src="/images/ZEnergyLogoWhite.png" alt="Station" class="${
-              styles.logo
-            }">`;
+      return `
+          <div class="${styles.markerContent}"> 
+              <img src="/images/ZEnergyLogoWhite.png" alt="Station" class="${styles.logo}">
+              <div class="${styles.markerInfo}">
+                  <strong>${station.fuelTypes[0].pricePerLitre}/L</strong>
+                  <div class="${styles.name}">${station.name}</div>
+                  <div class="${styles.status}">${station.open24Hours ? 'Open 24 Hours' : '24/7 Pay at Pump'}</div>
+              </div>
+          </div>`;
   } else {
-    return `<img src="/images/ZEnergyLogoWhite.png" alt="Station" class="${styles.logoFull}">`;
+      return `<img src="/images/ZEnergyLogoWhite.png" alt="Station" class="${styles.logoFull}">`;
   }
 }
+
 
 export default MapComponent;
