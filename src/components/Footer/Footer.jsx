@@ -4,6 +4,11 @@ function Footer() {
     <div className={styles.footerContainer}>
       <div className={styles.innerContainer}>
         <img className={styles.zLogo} src="/images/Z-logo.png" alt="" />
+        <img
+          className={styles.contactUsIconMobile}
+          src="/images/footerImages/contactUs.png"
+          alt=""
+        />
         <ul className={styles.footerList}>
           <li className={styles.listHeader}>Products and services</li>
           <li className={styles.listContent}>At the station</li>
@@ -32,26 +37,42 @@ function Footer() {
           <li className={styles.listContent}>News</li>
           <li className={styles.listContent}>Careers at Z</li>
           <li className={styles.listContent}>Corporate centre</li>
-              </ul>
-           <div className={styles.rightSideContainer}>
-                  <img src="/images/footerImages/contactUs.png" alt="" />
-                  <img className={styles.socialIcons}  src="/images/footerImages/socialMedia.png" alt="" />
-          </div>   
+        </ul>
 
-          </div>          
-          
+        <div className={styles.rightSideContainer}>
+          <img
+            className={styles.contactUsIcon}
+            src="/images/footerImages/contactUs.png"
+            alt=""
+          />
+          <img
+            className={styles.socialIcons}
+            src="/images/footerImages/socialMedia.png"
+            alt=""
+          />
+        </div>
+      </div>
+
       <div className={styles.dividerLine}></div>
       <div className={styles.lowerFooterContainer}>
+        <img className={styles.socialIconsMobile} src="/images/footerImages/socialMedia.png" alt="" />
         <ul className={styles.infoLinks}>
           <li>Privacy</li>
           <li>Terms of use</li>
           <li>Fuel Safety Data Sheets</li>
           <li>Investor relations</li>
-              </ul>
-              <p className={styles.copyrightNoticeContainer}><span>© Z Energy Limited. All trademarks are used under license.</span><img className={styles.shieldedSiteIcon} src="/images/footerImages/shieldedSite.png" alt="" /></p>
-              
-          </div>
-          
+        </ul>
+        <p className={styles.copyrightNoticeContainer}>
+          <span>
+            © Z Energy Limited. All trademarks are used under license.
+          </span>
+          <img
+            className={styles.shieldedSiteIcon}
+            src="/images/footerImages/shieldedSite.png"
+            alt=""
+          />
+        </p>
+      </div>
     </div>
   );
 }
