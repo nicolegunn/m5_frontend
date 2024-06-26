@@ -146,7 +146,7 @@ body, html {
 .fuelPriceIcon {
   position: absolute;
   height: 16px;
-  left: -25px;
+  left: -20px;
   top: 53%;
   transform: translateY(-50%);
 }
