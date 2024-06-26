@@ -9,6 +9,7 @@
 
 .checkboxesContainer {
   display: flex;
+  flex-wrap: wrap;
   gap: calc(var(--checkbox-label-gap) * 2.5);
 }
 

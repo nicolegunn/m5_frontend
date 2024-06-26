@@ -3,7 +3,7 @@
   /* css variables */
   --checkbox-size: 24px;
   --checkbox-label-gap: calc(var(--checkbox-size) / 3);
-  --padding-body-desktop: 11vw;
+  --padding-body-desktop: 8vw;
   --padding-body-mobile: 6vw;
   --b-radius-container: 8px;
   --b-radius-button: 16px;
@@ -20,7 +20,7 @@
   --color-yellow: #ffcb08;
   --ff-ss: "Inter", sans-serif;
   --fs-desktop: 1rem;
-  --fs-mobile: calc(var(var(--fs-desktop) * 0.875)); /* 14px */
+  --fs-mobile: calc(var(--fs-desktop) * 0.875); /* 14px */
 }
 
 *,
@@ -38,6 +38,10 @@ body {
   color: var(--color-dark);
   font-family: var(--ff-ss);
   font-size: var(--fs-desktop);
+}
+
+button {
+  outline: none;
 }
 
 @media (width < 600px) {
