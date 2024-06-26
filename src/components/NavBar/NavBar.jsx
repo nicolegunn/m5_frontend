@@ -1,10 +1,8 @@
 import styles from "./NavBar.module.css";
+import magnifyingGlassIcon from "../../../src/assets/magnifying-glass.svg";
+import hamburgerBarIcon from "../../../src/assets/hamburger-bars.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMagnifyingGlass,
-  faChevronDown,
-  faBars,
-} from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 function NavBar() {
@@ -62,13 +60,18 @@ function NavBar() {
             type="text"
             placeholder="Search"
           />
-
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
+          <img
+            src={magnifyingGlassIcon}
+            alt="Magnifying Glass Icon"
             className={styles.magnifyingGlass}
           />
           <span className={styles.divider}></span>
-          <FontAwesomeIcon icon={faBars} className={styles.hamburgerMenu} />
+
+          <img
+            src={hamburgerBarIcon}
+            alt="Hamburger Bar Icon"
+            className={styles.hamburgerMenu}
+          />
         </div>
       </div>
     </nav>
