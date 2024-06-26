@@ -1,61 +1,59 @@
 .navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding-block: 10px;
+  gap: clamp(10px, 2vw, 20px);
+  padding-block: 1rem;
   padding-inline: var(--padding-body-desktop);
   box-shadow: var(--shadow-container);
+  font-size: 14px;
 }
 
-button {
-  background: none;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
+.logoImage {
+  height: 54px;
+}
+
+.mainContent {
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .navMenu {
   display: flex;
-  gap: 20px;
   align-items: center;
-}
-
-.logo img {
-  height: 30px;
-  display: block;
+  gap: clamp(10px, 2vw, 20px);
 }
 
 .menuItem {
-  padding: 10px 15px;
-  cursor: pointer;
-  text-decoration: none;
-  color: var(--color-dark);
-  font-weight: bold;
-  background: none;
-  border: none;
   position: relative;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .menuItem:hover,
 .menuItem:focus {
-  background-color: var(--color-light-grey);
+  color: var(--color-orange);
 }
 
 .dropdownContent {
-  display: none;
   position: absolute;
-  background-color: var(--color-light);
-  box-shadow: var(--shadow-container);
   z-index: 1;
+  display: none;
   min-width: 160px;
+  box-shadow: var(--shadow-container);
+  background-color: var(--color-light);
 }
 
 .dropdownContent a {
-  color: var(--color-dark);
+  display: block;
   padding: 12px 16px;
+  color: var(--color-dark);
   text-decoration: none;
+}
+
+.menuItem:hover .dropdownContent {
   display: block;
 }
 
@@ -63,83 +61,89 @@ button {
   background-color: var(--color-light-grey);
 }
 
-.menuItem:hover .dropdownContent {
-  display: block;
-}
-
-.searchBar {
+.rightContainer {
   display: flex;
-  flex-direction: right;
-  gap: 10px;
-}
-
-.searchInput {
-  border: none;
-  padding: 5px;
-  outline: none;
-  width: 80px;
-  margin-right: 10px;
-}
-
-.searchInput::placeholder {
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 12px;
   font-weight: bold;
-  color: var(--color-dark);
 }
 
-.searchButton {
-  background: var(--color-light);
-  color: var(--color-dark);
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.stationButton {
-  background: var(--color-orange);
-  color: var(--color-light);
-  border: 2px solid var(--color-orange);
-  border-radius: 20px;
-  padding: 5px 15px;
-  cursor: pointer;
+.findAStationButton {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  height: 30px;
-  width: 150px;
+  padding: 0.5rem 1rem;
+  margin-right: 20px;
+  border-radius: 40px;
+  background: linear-gradient(270deg, #f09d4d 0%, #e7823e 50%, #de642e 100%);
+  color: var(--color-light);
+  cursor: pointer;
+}
+
+.searchInput {
+  width: 7ch;
+  outline: none;
+}
+.searchInput::placeholder {
+  color: var(--color-dark);
+}
+
+.magnifyingGlass {
+  background-color: var(--color-light);
+  font-size: 16px;
+  opacity: 0.8;
+  cursor: pointer;
+  transform: translateY(-10%);
 }
 
 .hamburgerMenu {
   display: none;
+  background-color: var(--color-light);
+  color: var(--color-orange);
+  font-size: 50px;
+  opacity: 0.8;
 }
 
-@media (width < 600px) {
-  .navbar {
-    padding-inline: var(--padding-body-mobile);
+@media (width < 1000px) {
+  .mainContent {
+    justify-content: flex-end;
   }
 
   .navMenu {
     display: none;
   }
 
-  .navMenu.active {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  .findAStationButton {
+    display: none;
+  }
+
+  .searchInput {
+    display: none;
+  }
+
+  .magnifyingGlass {
+    font-size: 40px;
+    transform: translateY(-2%);
+  }
+
+  .divider {
+    display: inline-block;
+    width: 1px;
+    height: 100%;
+    margin-right: 0.3rem;
+    border-left: 1px var(--color-light-grey) solid;
+    color: var(--color-light-grey);
   }
 
   .hamburgerMenu {
     display: block;
-    position: absolute;
-    top: 0px;
-    right: 10px;
   }
+}
 
-  .searchBar {
-    display: none;
-  }
-
-  .hamburgerIcon svg {
-    color: var(--color-orange);
+@media (width < 600px) {
+  .navbar {
+    padding-inline: var(--padding-body-mobile);
+    font-size: 12px;
   }
 }
