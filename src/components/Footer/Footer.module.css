@@ -125,6 +125,7 @@
   .infoLinks {
     width: fit-content;
     list-style: none;
+    display: flex;
   }
 
   .dividerLine {
