@@ -1,5 +1,4 @@
 import styles from "./Card.module.css";
-import FuelPrice from "./FuelPrice";
 import OpeningHours from "./OpeningHours";
 import Services from "./Services";
 
