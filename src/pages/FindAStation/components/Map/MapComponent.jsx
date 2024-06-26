@@ -4,17 +4,20 @@ import { Loader } from "@googlemaps/js-api-loader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import styles from "./MapComponent.module.css";
+import Card from "../Card/Card";
 
 const MapComponent = ({ stations }) => {
   const mapRef = useRef(null);
   const searchBoxRef = useRef(null);
   const [map, setMap] = useState(null);
+  const [filteredStations, setFilteredStations] = useState([]);  // new array for stations within radius
 
+  //loads the map with necessary API validations and libraries
   useEffect(() => {
     const loader = new Loader({
-      apiKey: import.meta.env.VITE_MAP_API_KEY,
-      version: "weekly",
-      libraries: ["places"],
+        apiKey: import.meta.env.VITE_MAP_API_KEY,
+        version: "weekly",
+        libraries: ["places", "geometry"]
     });
 
     loader
@@ -23,7 +26,7 @@ const MapComponent = ({ stations }) => {
         const loadedMap = initializeMap(mapRef.current);
         setMap(loadedMap);
         createMarkers(loadedMap, stations);
-        setupSearchBox(loadedMap, searchBoxRef.current);
+        setupSearchBox(loadedMap, searchBoxRef.current, stations, setFilteredStations);
       })
       .catch((e) => {
         console.error("Failed to load Google Maps", e);
@@ -57,6 +60,11 @@ const MapComponent = ({ stations }) => {
           Near Me
         </button>
       </div>
+
+      <div className={styles.cardContainer}>
+          <h1 className={styles.stationHeader}>{filteredStations.length} Stations Found</h1>
+          {filteredStations.map(station => <Card key={station.name} station={station} />)}
+      </div>
       <div ref={mapRef} className={styles.map}></div>
     </div>
   );
@@ -64,33 +72,46 @@ const MapComponent = ({ stations }) => {
 
 function initializeMap(mapElement) {
   return new google.maps.Map(mapElement, {
-    center: { lat: -40.9006, lng: 170.886 },
-    zoom: 5.8,
+    center: { lat: -39.9006, lng: 170.886 },
+    zoom: 6.5,
     mapTypeControl: false,
     fullscreenControl: false,
   });
 }
 
-function setupSearchBox(map, inputElement) {
+//function that handles the searching
+//takes in the map and input element and array of stations and new array of stations within the radius of area entered. 
+function setupSearchBox(map, inputElement, stations, setFilteredStations) {
   const searchBox = new google.maps.places.SearchBox(inputElement);
-  searchBox.addListener(
-    "places_changed",
-    () => {
+  searchBox.addListener('places_changed', () => {
       const places = searchBox.getPlaces();
       if (places.length === 0) return;
 
+      //takes the location of the place entered by the user and sets radius around it
       const bounds = new google.maps.LatLngBounds();
-      places.forEach((place) => {
-        if (place.geometry.viewport) {
-          bounds.union(place.geometry.viewport);
-        } else {
-          bounds.extend(place.geometry.location);
-        }
+      const RADIUS = 3000; // Radius in meters 
+
+      //this loop checks the stations array passed from FindAStaion page to see if they are located within the radius
+      //uses the built in geometric functions in the geometry lib of the API to calculate distance
+      //Adds the station into the new array. This new array is what is used to display the cards in the above JSX. 
+      places.forEach(place => {
+          if (!place.geometry) return;
+          const filtered = stations.filter(station => {
+              const stationPos = new google.maps.LatLng(station.coordinates.lat, station.coordinates.lon);
+              const distance = google.maps.geometry.spherical.computeDistanceBetween(place.geometry.location, stationPos);
+              return distance <= RADIUS;
+          });
+
+          setFilteredStations(filtered); // Update state with filtered stations
+
+          if (place.geometry.viewport) {
+              bounds.union(place.geometry.viewport);
+          } else {
+              bounds.extend(place.geometry.location);
+          }
       });
       map.fitBounds(bounds);
-    },
-    { passive: true }
-  );
+  });
 }
 
 // Function to create and manage custom markers for stations
