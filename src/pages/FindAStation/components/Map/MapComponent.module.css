@@ -68,7 +68,7 @@
   width: 50%;
   min-width: 360px;
   padding: 30px 20px 20px 30px;
-  border-bottom-right-radius: var(--b-radius-container);
+  border-radius: var(--b-radius-container);
   background: linear-gradient(
     90deg,
     var(--color-orange) 30%,
@@ -136,7 +136,7 @@
     width: 100%;
     min-width: none;
     padding: 30px 18px 18px 18px;
-    border-bottom-right-radius: 0px;
+    border-radius: 0px;
   }
 
   .findAStationTitle {
