@@ -6,6 +6,7 @@
 
 .customMarker {
   cursor: pointer;
+  flex-direction: row; 
   background-color: var(--color-orange);
   padding: 5px;
   border-radius: 50%;
@@ -38,7 +39,23 @@
   border-radius: 80px;
 }
 
+.customMarker.expanded img {
+  width: 20px;  
+  height: 20px;  
+  margin-right: 10px;  
+  margin-top: 20px; 
+}
+
+.markerContent {  
+  display: flex;
+  flex-direction: row;  
+  justify-content: center;  
+  overflow: hidden; 
+}
+
 .markerInfo {
+  display: flex;
+  flex-direction: column;
   padding: 5px;
   border-radius: 5px;
   margin-top: 5px;
@@ -47,7 +64,7 @@
 }
 
 .markerInfo strong {
-  font-size: 1.2rem;
+  font-size: 1.0rem;
   font-weight: bold;
 }
 
@@ -108,7 +125,7 @@
   position: absolute;
   top: 50%;
   right: 10px;
-  transform: translateY(-35%); /* Center vertically */
+  transform: translateY(-35%); 
   color: var(--color-orange);
   font-size: 1.25rem;
 }
@@ -135,7 +152,7 @@
   width: 37%; 
   background-color: var(--color-light);
   box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-  max-height: 40%; 
+  max-height: 60%; 
   overflow-y: auto;
   z-index: 2;
    
@@ -143,32 +160,40 @@
 
 .stationHeader {
   display: flex;
-  justify-content: space-between; /* Aligns items on opposite ends */
-  align-items: center; /* Centers items vertically */
+  justify-content: space-between; 
+  align-items: center; 
   background-color: var(--color-purple);
   color: var(--color-light);
   padding: 10px;
   font-size: 16px;
   font-weight: bold;
   padding: 30px 20px 20px 30px;
-  width: 100%; /* Ensures the container fills its parent width */
+  width: 100%; 
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  width: 100%; 
 }
 
 .stationHeader h1 {
   flex: 1; 
-  white-space: nowrap; /* Prevents the text from wrapping */
-  overflow: hidden; /* Keeps the text within the container */
-  text-overflow: ellipsis; /* Adds an ellipsis if the text overflows */
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis; 
 }
 
 .filterButton {
   padding: 5px 10px;
-  background-color: var(--color-orange);
+  background-color: var(--color-purple);
   color: var(--color-light);
   border-radius: var(--b-radius-button);
   cursor: pointer;
   box-shadow: var(--shadow-button);
-  flex-shrink: 0; /* Prevents the button from shrinking */
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
 
@@ -203,5 +228,26 @@
   .magnifyingGlass {
     font-size: 1rem;
     transform: translateY(-45%);
+  }
+
+  .cardContainer {
+    width: 100%; 
+    top: 0; 
+    max-height: 100%; 
+    padding: 10px;
+    overflow-y: scroll; 
+  }
+
+  .inputContainer,
+  .searchBox,
+  .searchButton,
+  .filterButton {
+    font-size: calc(var(--fs-desktop) * 0.875); 
+  }
+
+  .customMarker,
+  .customMarker.expanded {
+    width: 120px; 
+    height: 50px; 
   }
 }
