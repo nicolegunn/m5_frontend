@@ -13,8 +13,8 @@ export default function Home() {
             <img className={styles.homeImagesDesktop} src="/images/sharetank.png" alt="" />
 
             <img className={styles.homeImagesMobile} src="/images/homeMobile/banner.png" alt="" />
-            <img className={styles.homeImagesMobile} src="/images/homeMobile/z-for-new-zealand.png" alt="" />
-            <img className={styles.homeImagesMobile} src="/images/homeMobile/powerHome.png" alt="" />
+            <img className={`${styles.homeImagesMobile} ${styles.zforNewZealandMobile}`} src="/images/homeMobile/z-for-new-zealand.png" alt="" />
+            <img className={`${styles.homeImagesMobile} ${styles.powerHome}`}  src="/images/homeMobile/powerHome.png" alt="" />
             <img className={styles.homeImagesMobile} src="/images/homeMobile/what-you-need.png" alt="" />
             <img className={styles.homeImagesMobile} src="/images/homeMobile/there-where-you-need-us.png" alt="" />
             <img className={styles.homeImagesMobile} src="/images/homeMobile/make-the-most-of-z.png" alt="" />

@@ -42,9 +42,9 @@ export default function FindAStation() {
       </h3>
       <Filters fetchStations={handleApplyFilters} />
       <MapComponent stations={stations} />
-      {/* {stations.map((station) => (
+      {stations.map((station) => (
         <Card key={station.name} station={station} />
-      ))} */}
+      ))}
     </div>
   );
 }

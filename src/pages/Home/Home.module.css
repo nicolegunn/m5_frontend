@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
 }
@@ -8,44 +9,49 @@ body, html {
   width: 100%;
 }
 
-@media (min-width: 600px){
-  .homeContainer {
-    height: 100%;
-    width: 100%;
-  }
-.homeImagesDesktop {
-  max-width: 100%;
-  padding: 0;
-  margin: 0;
+.homeContainer > img {
   object-fit: contain;
-}
-.homeImagesMobile {
-  display: none;
-}
-}
-@media (max-width: 600px){
-  .homeContainer {
-    height: 100%;
-    width: 100%;
-  }
-  .homeContainer {
-    position: relative;
-  }
-.homeImagesDesktop {
-  display: none;
-}
-.homeImagesMobile {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
   max-width: 100%;
-  object-fit: contain;
 }
 
+@media (max-width: 600px) {
+  .homeContainer {
+    padding-inline: var(--padding-body-mobile); 
+  }
 
+  .homeImagesDesktop {
+    display: none;
+  }
+  .homeImagesMobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  .powerHome {
+    padding-top: 40px;
+  }
 }
 
+  @media (min-width: 600px) {
+    .homeContainer {
+      padding-inline: var(--padding-body-desktop); 
+    }
+    .homeImagesDesktop {
+      max-width: 100%;
+      padding: 0;
+      margin: 0;
+      object-fit: contain;
+    }
+    .homeImagesMobile {
+      display: none;
+    }
+  }
 
-
+  .powerHome {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 

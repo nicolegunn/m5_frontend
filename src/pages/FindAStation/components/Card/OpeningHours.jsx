@@ -57,13 +57,13 @@ function OpeningHours({ hoursOpen }) {
       {isOpeningHoursExpanded && (
         <div className={styles.openingHoursDetailContainer}>
           <ul className={styles.openingHoursDay}>
-            {openingHours.map((dayOfWeek) => (
-              <li>{dayOfWeek.day}</li>
+            {openingHours.map((dayOfWeek, index) => (
+              <li key={index}>{dayOfWeek.day}</li>
             ))}
           </ul>
           <ul className={styles.openingHoursTimes}>
-            {openingHours.map((hoursOfDay) => (
-              <li>{hoursOfDay.hours}</li>
+            {openingHours.map((hoursOfDay, index) => (
+              <li key={index}>{hoursOfDay.hours}</li>
             ))}
           </ul>
         </div>
