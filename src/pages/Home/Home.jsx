@@ -19,8 +19,6 @@ export default function Home() {
             <img className={styles.homeImagesMobile} src="/images/homeMobile/make-the-most-of-z.png" alt="" />
             <img className={styles.homeImagesMobile} src="/images/homeMobile/share-tank.png" alt="" />
             <img className={styles.homeImagesMobile} src="/images/homeMobile/sharetank.png" alt="" />
-
-
             
         </div>
     ); 
