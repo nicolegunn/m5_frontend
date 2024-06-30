@@ -10,13 +10,13 @@ This is a React-based project for managing and visualizing service station data 
 
 ## Features
 
-- Filtering Stations based on station type, fuel type, and services
-- Interactive Map Feature that display custom markers
-- Card Component that displays detailed information for each station
+- Filtering service stations based on station type, fuel type, and services
+- Interactive map feature that displays custom markers
+- Card component that displays detailed information for each station
 
 ## Usage 
 
-- Navigate to the Find a Station page
+- Navigate to the 'Find a station' page
 - Filter stations according to your requirements 
 - Click markers for more information on a specific station
 - Enter a location in the search bar of the map which will display stations within the surrounding area  
@@ -88,7 +88,7 @@ A tool to seed a local instance of MongoDB with service station data can be foun
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/nicole-gunn-a582ba23b/)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/nicolegunn)
 
-### **Jose Paolo Alejandro** 
+### **Paolo Alejandro** 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/paolo-alejandro-2b0941126/)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/jpmal22)
 
