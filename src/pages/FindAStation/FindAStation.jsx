@@ -3,7 +3,6 @@ import axios from "axios";
 import Filters from "./components/Filters/Filters.jsx";
 import styles from "./FindAStation.module.css";
 import MapComponent from "./components/Map/MapComponent.jsx";
-import Card from "./components/Card/Card.jsx";
 
 export default function FindAStation() {
   const [stations, setStations] = useState([]);
