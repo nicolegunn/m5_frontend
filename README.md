@@ -21,6 +21,11 @@ This is a React-based project for managing and visualizing service station data 
 - Click markers for more information on a specific station
 - Enter a location in the search bar of the map which will display stations within the surrounding area  
 
+## Demo
+
+Here is a demo of the Z Energy Prototype Website in action:
+![Z Energy Prototype Demo](service-station-website-demo.gif)
+
 ## Technologies Used
 
 This project was bootstrapped with the following technologies:
@@ -39,8 +44,6 @@ This project was bootstrapped with the following technologies:
 ![npm](https://img.shields.io/badge/npm-8.0.0-red?style=for-the-badge&logo=npm&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Google Maps](https://img.shields.io/badge/Google%20Maps-4285F4?style=for-the-badge&logo=google-maps&logoColor=white)
-
-
 
 - Node.js (v16 or later)
 - npm (v8 or later)
