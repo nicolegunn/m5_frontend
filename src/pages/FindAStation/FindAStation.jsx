@@ -21,13 +21,11 @@ export default function FindAStation() {
 
   const handleApplyFilters = (filters) => {
     fetchStations(filters);
-    
   };
 
   useEffect(() => {
     fetchStations();
   }, []);
-
 
   return (
     <div className={styles.mainContainer}>
@@ -36,9 +34,6 @@ export default function FindAStation() {
       </h3>
       <Filters fetchStations={handleApplyFilters} />
       <MapComponent stations={stations} />
-      {stations.map((station) => (
-        <Card key={station.name} station={station} />
-      ))}
     </div>
   );
 }
