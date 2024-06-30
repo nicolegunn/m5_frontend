@@ -3,7 +3,6 @@ import axios from "axios";
 import Filters from "./components/Filters/Filters.jsx";
 import styles from "./FindAStation.module.css";
 import MapComponent from "./components/Map/MapComponent.jsx";
-import Card from "./components/Card/Card.jsx";
 
 export default function FindAStation() {
   const [stations, setStations] = useState([]);
@@ -22,13 +21,11 @@ export default function FindAStation() {
 
   const handleApplyFilters = (filters) => {
     fetchStations(filters);
-    
   };
 
   useEffect(() => {
     fetchStations();
   }, []);
-
 
   return (
     <div className={styles.mainContainer}>
@@ -37,9 +34,6 @@ export default function FindAStation() {
       </h3>
       <Filters fetchStations={handleApplyFilters} />
       <MapComponent stations={stations} />
-      {/* {stations.map((station) => (
-        <Card key={station.name} station={station} />
-      ))} */}
     </div>
   );
 }
